@@ -1,0 +1,98 @@
+{
+    "gallery": {
+        "name": "identites",
+        "hash": "Identites_visuelles",
+        "items": [
+            {
+                "img": "1.serie-mania.gif", 
+                "project": "serie-mania"
+            },
+            {
+                "img": "2.1.ibis.jpg", 
+                "project": "ibis"
+            },
+            {
+                "img": "3.yokai-tea.jpg", 
+                "project": "yokai-tea"
+            },
+            {
+                "img": "4.rixos.jpg", 
+                "project": "rixos"
+            }
+        ]
+    },
+    "projects": [
+        {
+            "name": "yokai-tea",
+            "hash": "Yokai_Tea",
+            "color": "#eecde3",
+            "imgs": ["1.yokaitea.jpg", "2.yokaitea.jpg", "3.yokaitea.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Yokai Tea",
+                    "subtitle": "Packaging pour un thé japonais",
+                    "description": "Le sujet consistait en la création d’un nom, logo, puis d’un packaging pour une gamme de boîtes de thé vert japonais destiné à un jeune public occidental (adolescents, étudiants, jeunes adultes). L’idée était donc de s’inspirer de créatures mythologiques japonaises (ici, un Tengu et une Kitsune) et de l’esthétique du pop’ art pour créer un design attractif et coloré. Chaque boîte aurait une saveur différente à laquelle serait associé une créature différente et deux couleurs complémentaires différentes (une pour la créature et une pour le fond)."
+                },
+				"en": {
+                    "title": "Yokai Tea",
+                    "subtitle": "Packaging for a japanese tea",
+                    "description": "Creation of a name, logo, and packaging for a range of Japanese green tea boxes for young Western audiences (teenagers, students, young adults). The idea was to draw inspiration from Japanese mythological creatures (here, a Tengu and a Kitsune) and combine them with the aesthetics of pop art to create an attractive and colorful design concept. Each box has a different flavor that is associated with a different creature with two complementary colors (one for the creature and one for the background)."
+                }
+            }
+        },
+        {
+            "name": "serie-mania",
+            "hash": "Serie_Mania",
+            "color": "#9a3431",
+            "imgs": ["1.serie-mania.jpg", "10.serie-mania.jpg", "11.serie-mania.jpg", "12.serie-mania.jpg", "13.serie-mania.jpg", "14.serie-mania.jpg", "15.serie-mania.jpg", "16.serie-mania.jpg", "17.serie-mania.jpg", "18.1.trophe-serie-mania.jpg", "18.2.trophe-serie-mania.jpg", "19.serie-mania.gif", "2.serie-mania.jpg", "3.serie-mania.jpg", "4.serie-mania.jpg", "5.serie-mania.jpg", "6.serie-mania.jpg", "7.serie-mania.jpg", "8.serie-mania.jpg", "9.animation-logo-serie-mania.gif"],
+            "lang": {
+                "fr": {
+                    "title": "Logo Séries Mania",
+                    "subtitle": "Nouveau logo pour un festival",
+                    "description": "Lors de mon stage à Hartland Villa, on m’a donné l’opportunité de faire une proposition de logos pour répondre à l’appel d’offre du festival de séries Séries Mania. Mon logo (N&B) a été sélectionné adopté après avoir été retravaillé par Stefan de Vivies et Lionel Avignon (Couleur). Le logo compose un motif associé à la folie (mania en latin) créé par une mise en abyme évoquant le principe de la série (un épisode en mène à un autre etc.). Le tout forme un tunnel, une invitation à rentrer dans un univers infini et obsédant (au choix celui d’une série ou du festival). Il s’insère dans une initiale majuscule qui annonce de fait le festival comme classe et important bien que populaire par nature (d’où l’utilisation de couleurs)."
+                },
+				"en": {
+                    "title": "Logo Séries Mania",
+                    "subtitle": "New logo for a festival",
+                    "description": "During my internship at Hartland Villa, I was given the opportunity to design new logo designs as part of the design tender for the TV show festival Séries Mania. My logo (B&W) was selected and used after Stefan de Vivies and Lionel Avignon (Color) reworked it. The logo includes a pattern associated to insanity (mania in latin) created thanks to the use of a «mise en abyme» conveying the idea of a TV show (an episode leading to another etc.). As a whole, it constitutes a tunnel, an invitation to enter an infinite and haunting world (either the Tv show’s or the festival’s). It fits inside the capital letter M which announces the festival as a classy although popular event (hence the use of colors)."
+                }
+            }
+        },
+        {
+            "name": "ibis",
+            "hash": "Ibis",
+            "color": "#275592",
+            "imgs": ["1.ibis.jpg", "10.ibis.jpg", "11.ibis.jpg", "12.ibis.jpg", "13.ibis.jpg", "14.ibis.jpg", "15.pictos-ibis.gif", "16.ibis.jpg", "17.ibis.jpg", "18.ibis.jpg", "19.ibis.jpg", "2.ibis.jpg", "20.ibis.jpg", "21.ibis.jpg", "22.ibis.jpg", "23.ibis.png", "3.ibis.jpg", "4.2ibis.gif", "4.ibis.png", "5.ibis.jpg", "6.1.ibis.jpg", "6.2.ibis.jpg", "7.ibis.jpg", "8.ibis.png", "9.ibis.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Ibis budget",
+                    "subtitle": "Charte graphique et iconographie",
+                    "description": "En collaboration freelance avec Erwan Bacha pour le groupe Accor Hotels, nous avons eu l’opportunité de créer la nouvelle charte graphique ainsi que la nouvelle iconographie des hotels ibis budget. La demande était d’upgrader leur image de marque, de cibler les millennials ainsi que de promouvoir la nouvelle brand passion de la marque fixée par l’équipe marketing du groupe Ibis: l’urban sport. De la direction artistique du photoshoot à l'identité de marque, nous avons conçu tous les documents imprimés, les chartes, les pictogrammes et développé une stratégie pour leur réseaux sociaux."
+                },
+				"en": {
+                    "title": "Ibis budget",
+                    "subtitle": "Brand identity & iconography",
+                    "description": "In freelance collaboration with Erwan Bacha for the Accor Hotels group, we had the opportunity to create the new brand identity as well as the new iconography of ibis budget hotels. The request was to upgrade their brand image, to target the millennials as well as to promote the new brand passion set by the marketing team of the Ibis group: the urban sport. From photoshoot art direction to graphic identity, we designed all printed materials, brand guidelines, pictograms and developed a social media strategy."
+                }
+            }
+        },
+        {
+            "name": "rixos",
+            "hash": "Rixos",
+            "color": "#3f847",
+            "imgs": ["1.rixos.jpg", "2.rixos.jpg", "3.rixos.jpg", "4.rixos.jpg", "5.rixos.jpg", "6.rixos.jpg", "7.rixos.jpg", "8.rixos.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Rixos",
+                    "subtitle": "Chartes photos & vidéos",
+                    "description": "Création de chartes photos et vidéos élégantes permettant aux différents hôtels Rixos de produire des images cohérentes entre eux, d’upgrader la qualité des images produites et de souligner le caractère luxueux de la marque. La mise en page évoque un luxe légèrement oriental s'accordant parfaitement à l'image de la marque."
+                },
+				"en": {
+                    "title": "Rixos",
+                    "subtitle": "Photo & video guidelines",
+                    "description": "Creation of elegant guidelines allowing the different Rixos hotels to produce consistent images, upgrade the quality of the images produced and emphasize the luxurious character of the brand. The layout evokes a slightly oriental luxury that perfectly matches the image of the brand."
+                }
+            }
+        }
+    ]
+}

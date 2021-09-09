@@ -1,0 +1,140 @@
+{
+    "gallery": {
+        "name": "photographies",
+        "hash": "Photographies",
+        "items": [
+            {
+                "img": "1.cecile-au-sabre-normale.jpg", 
+                "project": "cecile-au-sabre"
+            },
+            {
+                "img": "12.antigone.jpg",
+                "project": "antigone"
+            },
+            {
+                "img": "3.pictures.jpg",
+                "project": "pictures"
+            },
+            {
+                "img": "8.licorne.mp4",
+                "project": "licorne"
+            },
+            {
+                "img": "5.queen.jpg",
+                "project": "queen"
+            },
+            {
+                "img": "6.party.jpg",
+                "project": "the-party"
+            },
+            {
+                "img": "7.idees.jpg",
+                "project": "idees"
+            },
+            {
+                "img": "9.minotaure.jpg",
+                "project": "minotaure"
+            },
+            {
+                "img": "2.toisons.jpg",
+                "project": "toisons"
+            },
+            {
+                "img": "10.constellations.jpg", 
+                "project": "constellations"
+            },
+            {
+                "img": "11.totem.jpg",
+                "project": "totems"
+            },
+            {
+                "img": "4.bellone.jpg",
+                "project": "bellone"
+            },
+            {
+                "img": "13.affiches.jpg",
+                "project": "affiches"
+            }
+        ]
+    },
+    "projects": [
+        {
+            "name": "affiches",
+            "hash": "Affiches",
+            "color": "#e9e9e9",
+            "imgs": ["1.affiche.jpg", "2.affiche.jpg"]
+        },
+        {
+            "name": "antigone",
+            "hash": "Antigone",
+            "color": "#a9a9a9",
+            "imgs": ["1.antigone.jpg", "2.antigone.jpg", "3.antigone.jpg", "4.antigone.jpg", "5.antigone.jpg"]
+        },
+        {
+            "name": "bellone",
+            "hash": "Bellone",
+            "color": "#0d1e4f",
+            "imgs": ["1.bellone.png", "2.bellone.jpg", "3.bellone.jpg", "4.bellone.jpg", "5.bellone.jpg", "6.bellone.jpg", "7.bellone.jpg"]
+        },
+        {
+            "name": "cecile-au-sabre",
+            "hash": "Cecile-au-sabre",
+            "color": "#361236",
+            "imgs": ["1.cecile-au-sabre.jpg"]
+        },
+        {
+            "name": "constellations",
+            "hash": "Constellations",
+            "color": "#454f5a",
+            "imgs": ["1.constellations.jpg", "2.constellations.jpg", "3.constellations.jpg"]
+        },
+        {
+            "name": "idees",
+            "hash": "Idees",
+            "color": "#3f847a",
+            "imgs": ["1.idees.jpg"]
+        },
+        {
+            "name": "licorne",
+            "hash": "Licorne",
+            "color": "#ca3b37",
+            "imgs": ["1.composition.mp4", "2.licorne.mp4"]
+        },
+        {
+            "name": "minotaure",
+            "hash": "Minotaure",
+            "color": "#f7d2d6",
+            "imgs": ["1.minotaure.jpg"]
+        },
+        {
+            "name": "pictures",
+            "hash": "Pictures",
+            "color": "#ce9648",
+            "imgs": ["1.pictures.jpg", "2.pictures.jpg", "3.pictures.jpg", "4.pictures.jpg", "5.pictures.jpg"]
+        },
+        {
+            "name": "queen",
+            "hash": "Queen",
+            "color": "#262b3c",
+            "imgs": ["1.queen.jpg"]
+        },
+        {
+            "name": "the-party",
+            "hash": "The_Party",
+            "color": "#313e8c",
+            "imgs": ["1.the_party.jpg", "2.the_party.jpg", "3.the_party.jpg", "4.the_party.png", "5.the_party.jpg", "6.the_party.jpg"]
+        },
+        {
+            "name": "toisons",
+            "hash": "Toisons",
+            "color": "#362814",
+            "imgs": ["1.toisons.png", "2.toisons.jpg", "3.toisons.jpg", "4.toisons.jpg", "5.toisons.jpg", "6.toisons.jpg", "7.toisons.jpg"]
+        },
+        {
+            "name": "totems",
+            "hash": "Totems",
+            "color": "#eee0d7",
+            "imgs": ["1.totem.png", "2.totem.jpg", "3.totem.jpg", "4.totem.jpg"]
+        }
+    ]
+}
