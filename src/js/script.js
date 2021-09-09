@@ -25,7 +25,7 @@ const introTransitionDurationMs = parseFloat(window.getComputedStyle(document.do
 const langs = ["fr", "en"];
 const defaultLang = langs[0];
 const contentRoot = "media/content/";
-const contentItems = ["identites", "illustrations", "photographies", "prints"];
+const contentItems = ["identites", /*"illustrations"*/, "photographies", /*"prints"*/];
 const mousePosition = {x: 0, y: 0};
 
 const content = {
