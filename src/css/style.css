@@ -507,10 +507,7 @@ body[data-index][data-before-intro] #nav {
 	transform: translateX(-100%);
 }
 
-body[data-index][data-on-intro] #slideshow {
-	display: none;
-}
-
+body[data-index][data-before-intro] .slideshow-img
 body[data-index][data-on-intro] .slideshow-img {
 	animation-play-state: paused;
 }
