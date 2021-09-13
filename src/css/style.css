@@ -507,14 +507,17 @@ body[data-index][data-before-intro] #nav {
 	transform: translateX(-100%);
 }
 
+body[data-before-intro] #slideshow,
 body[data-on-intro] #slideshow {
 	display: none;
 }
 
+body[data-before-intro] .slideshow-img,
 body[data-on-intro] .slideshow-img {
 	animation-play-state: paused;
 }
 
+body[data-before-intro] #intro,
 body:not([data-on-intro]) #intro {
 	display: none;
 }
