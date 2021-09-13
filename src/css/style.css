@@ -507,17 +507,15 @@ body[data-index][data-before-intro] #nav {
 	transform: translateX(-100%);
 }
 
-body[data-before-intro] #slideshow,
-body[data-on-intro] #slideshow {
+body[data-index][data-before-intro] #slideshow {
 	display: none;
 }
 
-body[data-before-intro] .slideshow-img,
-body[data-on-intro] .slideshow-img {
+body[data-index][data-before-intro] .slideshow-img {
 	animation-play-state: paused;
 }
 
-body:not([data-on-intro]) #intro {
+body[data-index]:not([data-on-intro]) #intro {
 	display: none;
 }
 
