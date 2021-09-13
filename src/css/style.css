@@ -517,8 +517,7 @@ body[data-on-intro] .slideshow-img {
 	animation-play-state: paused;
 }
 
-body[data-before-intro] #intro,
-body:not([data-on-intro]) #intro {
+body[data-before-intro] #intro {
 	display: none;
 }
 
