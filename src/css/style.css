@@ -23,10 +23,10 @@
 
 	--project-away-duration-ms: 3000;
 
-	--intro-step0-transition-delay-ms: 2000;
-	--intro-step1-transition-delay-ms: 4000;
-	--intro-step-transition-duration-ms: 2000;
-	--intro-transition-duration-ms: 6000;
+	--intro-step0-transition-delay-ms: 500;
+	--intro-step1-transition-delay-ms: 2000;
+	--intro-step-transition-duration-ms: 1500;
+	--intro-transition-duration-ms: 3500;
 }
 
 /*------------------*/
@@ -507,12 +507,15 @@ body[data-index][data-before-intro] #nav {
 	transform: translateX(-100%);
 }
 
-body[data-index][data-before-intro] .slideshow-img
-body[data-index][data-on-intro] .slideshow-img {
+body[data-on-intro] #slideshow {
+	display: none;
+}
+
+body[data-on-intro] .slideshow-img {
 	animation-play-state: paused;
 }
 
-body[data-index]:not([data-on-intro]) #intro {
+body:not([data-on-intro]) #intro {
 	display: none;
 }
 
