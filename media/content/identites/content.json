@@ -44,7 +44,7 @@
             "name": "serie-mania",
             "hash": "Serie_Mania",
             "color": "#9a3431",
-            "imgs": ["1.serie-mania.jpg", "10.serie-mania.jpg", "11.serie-mania.jpg", "12.serie-mania.jpg", "13.serie-mania.jpg", "14.serie-mania.jpg", "15.serie-mania.jpg", "16.serie-mania.jpg", "17.serie-mania.jpg", "18.1.trophe-serie-mania.jpg", "18.2.trophe-serie-mania.jpg", "19.serie-mania.gif", "2.serie-mania.jpg", "3.serie-mania.jpg", "4.serie-mania.jpg", "5.serie-mania.jpg", "6.serie-mania.jpg", "7.serie-mania.jpg", "8.serie-mania.jpg", "9.animation-logo-serie-mania.gif"],
+            "imgs": ["1.serie-mania.jpg", "10.serie-mania.jpg", "11.serie-mania.jpg", "12.serie-mania.jpg", "13.serie-mania.jpg", "14.serie-mania.jpg", "15.serie-mania.jpg", "16.serie-mania.jpg", "17.serie-mania.jpg", "18.1.trophe-serie-mania.jpg", "18.2.trophe-serie-mania.jpg", "19.serie-mania.gif", "2.serie-mania.jpg", "3.serie-mania.jpg", "4.serie-mania.jpg", "5.serie-mania.jpg", "6.serie-mania.jpg", "7.serie-mania.jpg", "8.serie-mania.jpg"],
             "lang": {
                 "fr": {
                     "title": "Logo Séries Mania",
@@ -62,7 +62,7 @@
             "name": "ibis",
             "hash": "Ibis",
             "color": "#275592",
-            "imgs": ["1.ibis.jpg", "10.ibis.jpg", "11.ibis.jpg", "12.ibis.jpg", "13.ibis.jpg", "14.ibis.jpg", "15.pictos-ibis.gif", "16.ibis.jpg", "17.ibis.jpg", "18.ibis.jpg", "19.ibis.jpg", "2.ibis.jpg", "20.ibis.jpg", "21.ibis.jpg", "22.ibis.jpg", "23.ibis.png", "3.ibis.jpg", "4.2ibis.gif", "4.ibis.png", "5.ibis.jpg", "6.1.ibis.jpg", "6.2.ibis.jpg", "7.ibis.jpg", "8.ibis.png", "9.ibis.jpg"],
+            "imgs": ["1.ibis.jpg", "10.ibis.jpg", "11.ibis.jpg", "12.ibis.jpg", "13.ibis.jpg", "14.ibis.jpg", "15.pictos-ibis.gif", "16.ibis.jpg", "17.ibis.jpg", "18.ibis.jpg", "19.ibis.jpg", "2.ibis.jpg", "20.ibis.jpg", "21.ibis.jpg", "22.ibis.jpg", "3.ibis.jpg", "insta-ibis.mp4", "4.ibis.png", "5.ibis.jpg", "6.1.ibis.jpg", "6.2.ibis.jpg", "7.ibis.jpg", "8.ibis.png", "9.ibis.jpg"],
             "lang": {
                 "fr": {
                     "title": "Ibis budget",
@@ -79,7 +79,7 @@
         {
             "name": "rixos",
             "hash": "Rixos",
-            "color": "#3f847",
+            "color": "#4fa295",
             "imgs": ["1.rixos.jpg", "2.rixos.jpg", "3.rixos.jpg", "4.rixos.jpg", "5.rixos.jpg", "6.rixos.jpg", "7.rixos.jpg", "8.rixos.jpg"],
             "lang": {
                 "fr": {

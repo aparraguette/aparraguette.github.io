@@ -11,10 +11,10 @@ const headerBannerScrollLeftBtn = document.getElementById("header-banner-scroll-
 const headerBannerScrollRightBtn = document.getElementById("header-banner-scroll-btn-right");
 const headerContact = document.getElementById("header-contact");
 
+const menuContainer = document.getElementById("menu-container");
 const homeSliderContainer = document.getElementById("home-slider-container");
 const projectsContainer = document.getElementById("projects-container");
 const galleriesContainer = document.getElementById("galleries-container");
-const galleryAnchor = document.getElementById("gallery-anchor");
 
 const projectAwayDurationMs = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--project-away-duration-ms"));
 const introStepTransitionDurationMs = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--intro-step-transition-duration-ms"));
@@ -32,6 +32,22 @@ const content = {
     galleries: [],
     projects: []
 };
+
+headerTitle.addEventListener("mouseenter", () => {
+    document.body.setAttribute("data-with-menu", "");
+});
+
+headerTitle.addEventListener("mouseleave", () => {
+    document.body.removeAttribute("data-with-menu");
+});
+
+menuContainer.addEventListener("mouseenter", () => {
+    document.body.setAttribute("data-with-menu", "");
+});
+
+menuContainer.addEventListener("mouseleave", () => {
+    document.body.removeAttribute("data-with-menu");
+});
 
 function handleHashChange(oldHash, newHash) {
     if (newHash === "") {
@@ -170,8 +186,6 @@ function loadContentPromise() {
                             projectsContainer.append(project.projectElement);
                             project.setupImgsCallbacks();
                         }
-
-                        galleryAnchor.href = `#${project.gallery.hash}`;
 
                         project.projectElement.hidden = false;
                         let routingFromGallery = (fromRoute == project.gallery.hash);

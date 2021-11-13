@@ -3,15 +3,16 @@
 	<head>
 		<title>A. PARRAGUETTE</title>
 		<link href="src/css/style.css" rel="stylesheet"/>
-		<link rel="preload" href="../media/nav/loader.gif" as="image">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<link rel="preload" href="../media/nav/AP.gif" as="image">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link rel="icon" href="favicon.png">
 	</head>
 	<body data-before-intro data-index data-layout="index">
-		<div id="overlay-layer" class="layer" data-layer="overlay">
+		<div id="overlay-layer" data-layer="overlay">
 			<div id="overlay-container" class="container">
-				<header id="header" class="flex-none flex">
-					<a id="header-title" class="flex-none" href="#" style="--data-pixels-ratio: 8.344;">A. PARRAGUETTE</a>
-					<span id="header-banner" class="flex-auto flex">
+				<header id="header">
+					<a id="header-title" href="#" style="--data-pixels-ratio: 8.344;">A. PARRAGUETTE</a>
+					<span id="header-banner">
 						<span id="header-banner-content" data-invisible>
 							<ul id="header-banner-contact-menu">
 								<li class="email-contact-menuitem">
@@ -21,7 +22,7 @@
 									<a href="tel:+3365-919-4682">+33 6 59 19 46 82</a>
 								</li>
 								<li class="networks-contact-menuitem">
-									<a class="instagram-btn" target="_blank" href="https://www.instagram.com/a.parraguette/"></a>
+									<a class="instagram-btn" target="_blank" href="https://www.instagram.com/anna_parraguette/"></a>
 									<a class="linkedin-btn" target="_blank" href="https://fr.linkedin.com/in/anna-parraguette-187117196"></a>
 								</li>
 							</ul>
@@ -31,13 +32,13 @@
 							<a id="header-banner-scroll-btn-right">></a>
 						</span>
 					</span>
-					<a id="header-contact" class="flex-none">contact</a>
+					<a id="header-contact">contact</a>
 				</header>
-				<div class="flex flex-auto no-pointer-events">
-					<nav id="nav">
-						<div id="contact-layer" class="layer" data-layer="contact">
+				<div id="overlay-body">
+					<nav id="nav" data-layer="menu contact">
+						<div id="contact-layer" data-layer="contact">
 							<div id="contact-container" class="container">
-								<ul id="home-contact-menu" class="flex-none">
+								<ul id="home-contact-menu">
 									<li class="email-contact-menuitem">
 										<a href="mailto:a.parraguette@outlook.fr">a.parraguette @ outlook.fr</a>
 									</li>
@@ -45,16 +46,16 @@
 										<a href="tel:+3365-919-4682">+33 6 59 19 46 82</a>
 									</li>
 									<li class="networks-contact-menuitem">
-										<a class="instagram-btn" target="_blank" href="https://www.instagram.com/a.parraguette/"></a>
+										<a class="instagram-btn" target="_blank" href="https://www.instagram.com/anna_parraguette/"></a>
 										<a class="linkedin-btn" target="_blank" href="https://fr.linkedin.com/in/anna-parraguette-187117196"></a>
 									</li>
 								</ul>
 							</div>
 						</div>
-						<div id="index-layer" class="layer" data-layer="index">
-							<div id="index-container" class="container">
-								<div id="index-menu" class="flex-columns">
-									<ul class="flex-none">
+						<div id="menu-layer" data-layer="menu">
+							<div id="menu-container" class="container">
+								<div id="menu">
+									<ul>
 										<!--<li class="print-menuitem">
 											<a href="#Prints" lang="en">prints & editorial design</a>
 											<a href="#Prints" lang="fr">prints & éditions</a>
@@ -76,8 +77,8 @@
 											<a href="#Contact" lang="fr">contact</a>
 										</li>
 									</ul>
-									<div class="flex-auto"></div>
-									<ul class="flex-none">
+									<div></div>
+									<ul>
 										<li class="lang-menuitem">
 											<a id="lang-btn"></a>
 										</li>
@@ -86,7 +87,7 @@
 							</div>
 						</div>
 					</nav>
-					<div id="slideshow" class="flex-auto">
+					<div id="slideshow">
 						<div class="slideshow-img"></div>
 						<div class="slideshow-img"></div>
 						<div class="slideshow-img"></div>
@@ -97,20 +98,17 @@
 					</div>
 				</div>
 			</div>
-			<div id="intro" class="no-pointer-events"></div>
+			<div id="intro"></div>
 		</div>
-		<div id="loader-layer" class="layer" data-layer="loader">
+		<div id="loader-layer" data-layer="loader">
 			<div id="loader-container" class="container">
 				<div id="loader"></div>
 			</div>
 		</div>
-		<div id="projects-layer" class="layer" data-layer="projects">
+		<div id="projects-layer" data-layer="projects">
 			<div id="projects-container" class="container"></div>
-			<div class="sticky">
-				<a id="gallery-anchor"><</a>
-			</div>
 		</div>
-		<div id="galleries-layer" class="layer" data-layer="galleries">
+		<div id="galleries-layer" data-layer="galleries">
 			<div id="galleries-container" class="container"></div>
 		</div>
 	</body>

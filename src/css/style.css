@@ -48,10 +48,6 @@ html, body {
 	overflow: hidden;
 }
 
-html::-webkit-scrollbar {
-	display: none;
-}
-
 ul {
 	list-style: none;
 	margin: 0;
@@ -84,7 +80,7 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	display: none !important;
 }
 
-.layer {
+[data-layer] {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -95,41 +91,11 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	pointer-events: none;
 }
 
-.sticky {
-	position: sticky;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	pointer-events: none;
-}
-
 .container {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
-}
-
-.no-pointer-events {
-	pointer-events: none;
-}
-
-.flex {
-	display: flex;
-}
-
-.flex-columns {
-	display: flex;
-	flex-direction: column;
-}
-
-.flex-auto {
-	flex: auto;
-}
-
-.flex-none {
-	flex: none;
 }
 
 [data-invisible] {
@@ -147,6 +113,8 @@ body[lang="en"] [lang]:not([lang="en"]) {
 }
 
 #header {
+	flex: none;
+	display: flex;
 	font-size: var(--header-font-size);
 	border-bottom: var(--header-border-width) solid black;
 }
@@ -159,6 +127,7 @@ body[lang="en"] [lang]:not([lang="en"]) {
 }
 
 #header-contact {
+	flex: none;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -172,7 +141,7 @@ body[lang="en"] [lang]:not([lang="en"]) {
 
 #header-contact[data-closed]::after {
 	display: block;
-	content: "x";
+	content: ">";
 	color: black;
 	position: absolute;
 	top: 0;
@@ -187,6 +156,8 @@ body[lang="en"] [lang]:not([lang="en"]) {
 }
 
 #header-title {
+	flex: none;
+	z-index: 2;
 	border-right: var(--header-border-width) solid black;
 }
 
@@ -223,6 +194,8 @@ body[lang="en"] [lang]:not([lang="en"]) {
 }
 
 #header-banner {
+	flex: auto;
+	display: flex;
 	overflow: hidden;
 	position: relative;
 }
@@ -297,8 +270,24 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	white-space: nowrap !important;
 }
 
-#index-menu {
+#overlay-body {
+	display: flex;
+	flex: auto;
+	pointer-events: none;
+}
+
+#menu {
+	display: flex;
+	flex-direction: column;
 	height: 100%;
+}
+
+#menu > ul {
+	flex: none;
+}
+
+#menu > div {
+	flex: auto;
 }
 
 .networks-contact-menuitem {
@@ -310,7 +299,6 @@ body[lang="en"] [lang]:not([lang="en"]) {
 
 .instagram-btn,
 .linkedin-btn {
-	display: inline-block;
 	height: 50px;
 	width: 50px;
 	background-size: contain;
@@ -334,8 +322,13 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	width: 100%;
 	height: 100%;
 	background-size: cover;
+	pointer-events: none;
 	
 	background-image: url("../../media/content/accueil/lapine-G.gif");
+}
+
+#slideshow {
+	flex: auto;
 }
 
 #slideshow .slideshow-img {
@@ -398,11 +391,8 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	/*width: 300px;
-	height: 400px;
-	border-radius: 50%;*/
-	background-image: url("../../media/nav/loader.gif");
-	background-size: 200px 300px;
+	background-image: url("../../media/nav/AP.gif");
+	background-size: 162px 288px;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-color: #fbfbfb;
@@ -419,22 +409,25 @@ body[lang="en"] [lang]:not([lang="en"]) {
 /*		Layouts	*/
 /*--------------*/
 
-.layer[data-layer="overlay"] {
+[data-layer~="overlay"] {
 	display: block;
 	z-index: 3;
 }
 
-.layer[data-layer="projects"] {
+[data-layer~="menu"] {
+	z-index: 3;
+}
+
+[data-layer~="projects"] {
 	z-index: 2;
 }
 
-.layer[data-layer="loader"] {
+[data-layer~="loader"] {
 	z-index: 4;
 }
 
 body:not([data-layout="index"]):not([data-intro]) #intro,
-body:not([data-layout="index"]):not([data-layout="contact"]) #slideshow,
-body:not([data-layout="project"]) #gallery-anchor {
+body:not([data-layout="index"]):not([data-layout="contact"]) #slideshow {
 	display: none;
 }
 
@@ -454,21 +447,16 @@ body[data-layout="gallery"] .project {
 	pointer-events: none;
 }
 
-body[data-layout="contact"] .layer[data-layer="contact"],
-body[data-layout="index"]   .layer[data-layer="index"],
-body[data-layout="gallery"] .layer[data-layer="galleries"],
-body[data-layout="gallery"] .layer[data-layer="projects"],
-body[data-layout="project"] .layer[data-layer="galleries"],
-body[data-layout="project"] .layer[data-layer="projects"] {
+body[data-index] [data-layer~="menu"],
+body[data-layout="contact"] [data-layer~="contact"],
+body[data-layout="gallery"] [data-layer~="galleries"],
+body[data-layout="gallery"] [data-layer~="projects"],
+body[data-layout="project"] [data-layer~="galleries"],
+body[data-layout="project"] [data-layer~="projects"] {
 	display: block;
 }
 
-body[data-layout="gallery"] .layer[data-layer="overlay"] #nav,
-body[data-layout="project"] .layer[data-layer="overlay"] #nav {
-	display: none;
-}
-
-body[data-on-loading] .layer[data-layer="loader"] {
+body[data-on-loading] [data-layer~="loader"] {
 	display: block;
 }
 
@@ -495,7 +483,7 @@ body[data-index] #header-banner {
 /*		Intro 	*/
 /*--------------*/
 
-body[data-before-intro] .layer[data-layer="loader"] {
+body[data-before-intro] [data-layer~="loader"] {
 	display: block;
 }
 
@@ -527,21 +515,6 @@ body:not([data-on-intro]) #intro {
 	height: 100%;
 }
 
-#gallery-anchor {
-	position: absolute;
-	display: inline-block;
-	flex: none;
-
-	font-size: calc(1.2 * var(--header-font-size));
-	
-	bottom: 24px;
-	left: 24px;
-}
-
-#gallery-anchor:hover {
-	font-weight: bold;
-}
-
 .project {
 	display: flex;
 	position: absolute;
@@ -550,22 +523,13 @@ body:not([data-on-intro]) #intro {
 
 	background-color: white;
 
+	overflow-y: auto;
+
 	will-change: transform;
 	transition-property: transform;
 	transition-duration: calc(var(--project-away-duration-ms) * 1ms);
 
-	transform: translate3d(0, 0, 0);
-	-webkit-transform: translate3d(0, 0, 0);
-
-	overflow-y: auto;
-	
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-
 	padding-top: var(--header-height);
-	
-	transform: translate3d(0, 0, 0);
-	-webkit-transform: translate3d(0, 0, 0);
 }
 
 .project::-webkit-scrollbar {
@@ -573,7 +537,33 @@ body:not([data-on-intro]) #intro {
 }
 
 .project[data-away] {
-	transform: translateX(100%);
+	transform: translateX(calc(100% + var(--header-border-width)));
+}
+
+.project-content {
+	display: flex;
+	flex-direction: column;
+	flex: auto;
+
+	transform: translate3d(0, 0, 0);
+	-webkit-transform: translate3d(0, 0, 0);
+	
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.project-content-bottom {
+	flex: none;
+	height: var(--header-height);
+}
+
+.project-item {
+	display: block;
+	width: calc(var(--header-width) - var(--header-title-width) - var(--header-contact-width) + 2 * var(--header-border-width));
+}
+
+.project-item:not(:first-child) {
+	margin-top: var(--vertical-margin);
 }
 
 .project-details {
@@ -583,16 +573,63 @@ body:not([data-on-intro]) #intro {
 	top: 0;
 	left: 0;
 	
-	width: var(--header-title-width);
-	height: 100%;
+	width: calc(var(--header-title-width) - 1 * var(--header-border-width));
 
-	overflow: auto;
+	scrollbar-width: none;
+	overflow-y: auto;
 
-	padding: var(--header-padding);
+	padding: var(--header-vertical-padding) var(--header-horizontal-padding);
 }
 
 .project-details::-webkit-scrollbar {
-	display: none;
+	width: var(--header-border-width);
+	background-color: white;
+}
+
+.project-details::-webkit-scrollbar-thumb {
+	background: black;
+}
+
+.project-details::before {
+	content: "";
+	display: block;
+	width: var(--header-border-width);
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: calc(-1 * var(--header-border-width));
+	background-color: black;
+}
+
+.gallery-anchor-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.gallery-anchor {
+	position: sticky;
+	display: inline-block;
+	flex: none;
+
+	font-size: calc(1.2 * var(--header-font-size));
+	
+	top: calc(100% - var(--header-height));
+	left: 24px;
+	z-index: 1;
+	pointer-events: auto;
+}
+
+.gallery-anchor:before {
+	content: "<";
+}
+
+.gallery-anchor:hover {
+	font-weight: bold;
+	font-style: italic;
 }
 
 .project-details h1,
@@ -620,19 +657,6 @@ body:not([data-on-intro]) #intro {
 	font-size: 0.7em;
 }
 
-.project-item {
-	display: block;
-	width: calc(var(--header-width) - var(--header-title-width) - var(--header-contact-width) + 2 * var(--header-border-width));
-	margin-left: calc(-1 * var(--header-border-width));
-}
-
-.project-item:not(:first-child) {
-	margin-top: var(--vertical-margin);
-}
-
-.project-item:last-child {
-	margin-bottom: var(--vertical-margin);
-}
 
 /*--------------------------*/
 /*		Galleries layer		*/
@@ -737,7 +761,7 @@ body:not([data-on-intro]) #intro {
 	flex: none;
 
 	transform: rotate(90deg);
-
+	
 	margin-top: calc(-0.5 * ((var(--height) - var(--width)) + 1px));
 	margin-bottom: calc(-0.5 * ((var(--height) - var(--width)) + 1px));
 }
@@ -748,8 +772,23 @@ body:not([data-on-intro]) #intro {
 
 @media screen and (min-width: 801px) {
 
+	.mobile {display: none !important;}
+
 	:root {
 		--subscroller-height: 0px;
+	}
+
+	body[data-with-menu] [data-layer~="menu"] {
+		display: block;
+	}
+
+	#menu-container {
+		margin-top: calc(-1 * var(--header-border-width));
+		height: calc(100% + var(--header-border-width));
+	}
+
+	#gallery-anchor {
+		display: none;
 	}
 
 	.gallery-subscroller {
@@ -763,6 +802,8 @@ body:not([data-on-intro]) #intro {
 
 @media screen and (max-width: 800px) {
 
+	.desktop {display: none !important;}
+
 	:root {
 		--project-away-duration-ms: 2000;
 	}
@@ -771,6 +812,20 @@ body:not([data-on-intro]) #intro {
 		text-align: center;
 		font-size: calc((var(--body-width) - 2 * var(--header-horizontal-padding)) / var(--data-pixels-ratio));
 		flex: auto;
+	}
+
+	.project-details::before {
+		content: none !important;
+	}
+
+	body[data-on-intro] [data-layer~="loader"] {
+		display: block;
+		z-index: 2;
+	}
+
+	#intro,
+	#slideshow {
+		display: none;
 	}
 	
 	#nav,
@@ -791,16 +846,32 @@ body:not([data-on-intro]) #intro {
 		height: calc(var(--body-height) - var(--header-height));
 	}
 
+	.project-details {
+		position: relative;
+		padding-bottom: var(--header-vertical-padding);
+		height: auto;
+	}
+
+	.project-content {
+		margin-top: 0;
+		height: auto;
+	}
+
 	.project {
-		display: block;
-		min-height: 100%;
+		flex-direction: column;
+		overflow-y: auto;
+		
+		scrollbar-width: none;
+
 		width: var(--body-width);
 	}
 
-	.project-details {
-		position: relative;
-		width: auto;
-		height: auto;
+	.project-content {
+		padding: 24px 0;
+	}
+
+	.project::-webkit-scrollbar {
+		display: none;
 	}
 
 	.project-item {
@@ -809,5 +880,9 @@ body:not([data-on-intro]) #intro {
 		width: var(--body-width);
 		padding: 0 24px;
 		height: auto;
+	}
+
+	.project-bottom {
+		display: none;
 	}
 }

@@ -135,7 +135,6 @@ class Gallery {
         });
 
         this.subscrollerElement.addEventListener("scroll", (event) => {
-            document.dispatchEvent(new CustomEvent("mousemove"));
             if (scrollInitiator == this.scrollerElement) {
                 scrollInitiator = null;
                 event.preventDefault();
@@ -150,16 +149,16 @@ class Gallery {
 
     setupInfiniteScrolling() {
         const scrollerIntersectionObserverCallback = (entries) => {
-            if (this.scrollerElement.getAttribute("data-disabled") == null) {
+            if (!this.scrollerElement.hasAttribute("data-disabled")) {
                 for (let entry of entries) {
                     if (entry.isIntersecting) {
                         let intersectingItem = this.items.find((item => item.itemWrapperElement == entry.target));
                         let intersectionSign = Math.sign(entry.boundingClientRect.x);
                         if (intersectingItem) {
-                            let intersectingItemHash = intersectingItem.hash;
+                            let sameHashItems = this.items.filter(item => item.hash == intersectingItem.hash);
                             if (intersectingItem.itemWrapperElement.dataset.pos == -1 && intersectionSign == -1) {
-                                let currPosItem = this.items.find((item => item.hash == intersectingItemHash && item.itemWrapperElement.dataset.pos == 0));
-                                let nextPosItem = this.items.find((item => item.hash == intersectingItemHash && item.itemWrapperElement.dataset.pos == 1));
+                                let currPosItem = sameHashItems.find((item => item.itemWrapperElement.dataset.pos == 0));
+                                let nextPosItem = sameHashItems.find((item => item.itemWrapperElement.dataset.pos == 1));
                                 if (currPosItem) {
                                     currPosItem.itemWrapperElement.dataset.pos = 1;
                                     currPosItem.subitemElement.dataset.pos = 1;
@@ -174,8 +173,8 @@ class Gallery {
                                 intersectingItem.subitemElement.dataset.pos = 0;
                             }
                             else if (intersectingItem.itemWrapperElement.dataset.pos == 1 && intersectionSign == 1) {
-                                let currPosItem = this.items.find((item => item.hash == intersectingItemHash && item.itemWrapperElement.dataset.pos == 0));
-                                let prevPosItem = this.items.find((item => item.hash == intersectingItemHash && item.itemWrapperElement.dataset.pos == -1));
+                                let currPosItem = sameHashItems.find((item => item.itemWrapperElement.dataset.pos == 0));
+                                let prevPosItem = sameHashItems.find((item => item.itemWrapperElement.dataset.pos == -1));
                                 if (currPosItem) {
                                     currPosItem.itemWrapperElement.dataset.pos = -1;
                                     currPosItem.subitemElement.dataset.pos = -1;
@@ -254,6 +253,7 @@ class Project {
                         };
                         return (typeof this.lang === "object") ? Object.keys(this.lang).reduce((acc, lang) => acc + createLangDetails(lang), "") : "";
                     })()}
+                    <a href="#${this.gallery.hash}" class="gallery-anchor desktop"></a>
                 </section>
                 <div class="project-content">
                     ${(() => {
@@ -274,6 +274,7 @@ class Project {
                         }
                         return (Array.isArray(this.imgs)) ? this.imgs.reduce((acc, img) => acc + createImgElement(img), "") : "";
                     })()}
+                    <div class="project-content-bottom"></div>
                 </div>
             </main>
         `, "text/html").body.firstChild;
@@ -282,15 +283,15 @@ class Project {
     }
 
     setupImgsCallbacks() {
+        const imgsResizeObserver = new ResizeObserver((entries) => {
+            for (let entry of entries) {
+                let clientRect = entry.target.getBoundingClientRect();
+                entry.target.style.setProperty("--width",  `${clientRect.width}px`);
+                entry.target.style.setProperty("--height",  `${clientRect.height}px`);
+            }
+        });
         this.imgsElements.forEach((img) => {
-            const imgResizeObserver = new ResizeObserver((entries) => {
-                for (let entry of entries) {
-                    let clientRect = entry.target.getBoundingClientRect();
-                    img.style.setProperty("--width",  `${clientRect.width}px`);
-                    img.style.setProperty("--height",  `${clientRect.height}px`);
-                }
-            });
-            imgResizeObserver.observe(img);
+            imgsResizeObserver.observe(img);
         });
     }
 }
