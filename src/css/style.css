@@ -426,6 +426,7 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	z-index: 4;
 }
 
+body[data-layout="contact"] [data-layer~="menu"],
 body:not([data-layout="index"]):not([data-intro]) #intro,
 body:not([data-layout="index"]):not([data-layout="contact"]) #slideshow {
 	display: none;
@@ -778,7 +779,7 @@ body:not([data-on-intro]) #intro {
 		--subscroller-height: 0px;
 	}
 
-	body[data-with-menu] [data-layer~="menu"] {
+	body[data-with-menu]:not([data-layout="contact"]) [data-layer~="menu"] {
 		display: block;
 	}
 
