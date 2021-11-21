@@ -60,7 +60,7 @@ function handleHashChange(oldHash, newHash) {
 
 function handleLangParam(lang) {
     if (langs.includes(lang)) {
-        let nextLang = langs[(langs.indexOf(lang) + 1) % langs.length];
+        const nextLang = langs[(langs.indexOf(lang) + 1) % langs.length];
         langBtn.innerText = nextLang;
         document.body.lang = lang;
         document.documentElement.lang = lang;
