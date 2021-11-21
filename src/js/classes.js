@@ -263,7 +263,7 @@ class Project {
                         };
                         return (typeof this.lang === "object") ? Object.keys(this.lang).reduce((acc, lang) => acc + createLangDetails(lang), "") : "";
                     })()}
-                    <a href="#${this.gallery.hash}" class="gallery-anchor desktop"></a>
+                    <a href="#${this.gallery.hash}" class="gallery-anchor"></a>
                 </section>
                 <div class="project-content">
                     ${(() => {

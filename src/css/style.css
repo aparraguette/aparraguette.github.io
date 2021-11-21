@@ -622,6 +622,14 @@ body:not([data-on-intro]) #intro {
 	left: var(--header-horizontal-padding);
 	z-index: 1;
 	pointer-events: auto;
+
+	transition-property: transform;
+	transition-delay: calc(var(--project-away-duration-ms) * 1ms);
+	transition-duration: 500ms;
+}
+
+.project:not([data-away]) .gallery-anchor {
+	transform: rotate(180deg);
 }
 
 .gallery-anchor:before {
@@ -803,7 +811,9 @@ body:not([data-on-intro]) #intro {
 
 @media screen and (max-width: 800px) {
 
-	.desktop {display: none !important;}
+	.gallery-anchor {
+		display: none;
+	}
 
 	:root {
 		--project-away-duration-ms: 2000;
