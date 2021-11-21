@@ -622,18 +622,10 @@ body:not([data-on-intro]) #intro {
 	left: var(--header-horizontal-padding);
 	z-index: 1;
 	pointer-events: auto;
-
-	transition-property: transform;
-	transition-delay: calc(var(--project-away-duration-ms) * 1ms);
-	transition-duration: 500ms;
-}
-
-.project:not([data-away]) .gallery-anchor {
-	transform: rotate(180deg);
 }
 
 .gallery-anchor:before {
-	content: "<";
+	content: ">";
 }
 
 .gallery-anchor:hover {
