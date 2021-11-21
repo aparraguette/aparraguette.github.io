@@ -12,7 +12,6 @@ const headerBannerScrollRightBtn = document.getElementById("header-banner-scroll
 const headerContact = document.getElementById("header-contact");
 
 const menuContainer = document.getElementById("menu-container");
-const homeSliderContainer = document.getElementById("home-slider-container");
 const projectsContainer = document.getElementById("projects-container");
 const galleriesContainer = document.getElementById("galleries-container");
 
@@ -90,14 +89,14 @@ function loadContentPromise() {
     return new Promise((resolve) => {
         (async function() {
             for await (let item of contentItems) {
-                let contentItem = await fetch(`${contentRoot}${item}/content.json`).then(
+                const contentItem = await fetch(`${contentRoot}${item}/content.json`).then(
                     (response) => response.json()
                 );
-                let galleryContent = contentItem.gallery;
-                let projectsContent = contentItem.projects;
+                const galleryContent = contentItem.gallery;
+                const projectsContent = contentItem.projects;
                 try {
                     galleryContent.items.forEach((galleryItem) => {
-                        let relatedProject = galleryItem.hash = projectsContent.find(
+                        const relatedProject = galleryItem.hash = projectsContent.find(
                             (projectContent) => projectContent.name === galleryItem.project
                         );
                         if (relatedProject) {
@@ -108,10 +107,10 @@ function loadContentPromise() {
                         }
                     });
                     
-                    let gallery = new Gallery(galleryContent.name, galleryContent.hash, galleryContent.items, projectsContent);
+                    const gallery = new Gallery(galleryContent.name, galleryContent.hash, galleryContent.items, projectsContent);
                     content.galleries.push(gallery);
 
-                    let galleryProjects = projectsContent.map(
+                    const galleryProjects = projectsContent.map(
                         projectContent => new Project(gallery, projectContent.name, projectContent.hash, projectContent.imgs, projectContent.lang)
                     );
                     gallery.projects.push(...galleryProjects);
@@ -239,7 +238,7 @@ window.addEventListener("mousemove", (event) => {
 });
 
 document.addEventListener("touchmove", (event) => {
-    let touch = event.touches.item(0);
+    const touch = event.touches.item(0);
     mousePosition.x = touch.clientX;
     mousePosition.y = touch.clientY;
 });
@@ -258,20 +257,20 @@ headerContact.addEventListener("click", () => {
 });
 
 langBtn.addEventListener("click", () => {
-    let searchParams = new URLSearchParams(window.location.search);
+    const searchParams = new URLSearchParams(window.location.search);
     searchParams.set("lang", langBtn.textContent);
     window.location.search = searchParams.toString();
 });
 
 window.addEventListener("hashchange", (event) => {
-    let newURL = event.newURL.substring(event.newURL.indexOf("#") + 1);
-    let oldURL = event.oldURL.substring(event.oldURL.indexOf("#") + 1);
+    const newURL = event.newURL.substring(event.newURL.indexOf("#") + 1);
+    const oldURL = event.oldURL.substring(event.oldURL.indexOf("#") + 1);
     handleHashChange(oldURL, newURL);
 });
 
 window.addEventListener("load", () => {
-    let hash = window.location.hash.substring(window.location.hash.indexOf("#") + 1);
-    let searchParams = new URLSearchParams(window.location.search || `?lang=${defaultLang}`);
+    const hash = window.location.hash.substring(window.location.hash.indexOf("#") + 1);
+    const searchParams = new URLSearchParams(window.location.search || `?lang=${defaultLang}`);
 
     loadContentPromise().then(() => {
         Promise.all([documentImgsLoadPromises()]).then(() => {
@@ -289,25 +288,25 @@ window.addEventListener("load", () => {
 });
 
 
-let headerObserver = new ResizeObserver((entries) => {
+const headerObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
-        let clientRect = entry.target.getBoundingClientRect();
+        const clientRect = entry.target.getBoundingClientRect();
         document.body.style.setProperty("--header-height", `${clientRect.height}px`);
         document.body.style.setProperty("--header-width",  `${clientRect.width}px`);
     }
 });
 headerObserver.observe(header);
 
-let bodyObserver = new ResizeObserver((entries) => {
+const bodyObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
-        let clientRect = entry.target.getBoundingClientRect();
+        const clientRect = entry.target.getBoundingClientRect();
         document.body.style.setProperty("--body-width",  `${clientRect.width}px`);
         document.body.style.setProperty("--body-height",  `${clientRect.height}px`);
     }
 });
 bodyObserver.observe(document.body);
 
-let headerBannerObserver = new ResizeObserver(() => {
+const headerBannerObserver = new ResizeObserver(() => {
     if (headerBanner.scrollWidth < headerBannerContent.scrollWidth) {
         headerBannerScrollLeftBtn.hidden = true;
         headerBannerScrollRightBtn.hidden = false;
@@ -330,17 +329,17 @@ let headerBannerObserver = new ResizeObserver(() => {
 });
 headerBannerObserver.observe(headerBanner);
 
-let headerContactObserver = new ResizeObserver((entries) => {
+const headerContactObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
-        let clientRect = entry.target.getBoundingClientRect();
+        const clientRect = entry.target.getBoundingClientRect();
         document.body.style.setProperty("--header-contact-width",  `${clientRect.width}px`);
     }
 });
 headerContactObserver.observe(headerContact);
 
-let headerTitleObserver = new ResizeObserver((entries) => {
+const headerTitleObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
-        let clientRect = entry.target.getBoundingClientRect();
+        const clientRect = entry.target.getBoundingClientRect();
         document.body.style.setProperty("--header-title-width",  `${clientRect.width}px`);
     }
 });

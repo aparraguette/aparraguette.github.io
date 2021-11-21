@@ -14,7 +14,7 @@ class Router {
         const keys = this.handlers.keys();
         let next = keys.next();
         while (!next.done) {
-            let value = next.value;
+            const value = next.value;
             if (
                 (typeof value == "string" && value == route)
                 || (value instanceof RegExp && value.test(route))
@@ -218,7 +218,7 @@ class Gallery {
         this.items.forEach((item) => {
             item.resizeObserver = new ResizeObserver((entries) => {
                 for (let entry of entries) {
-                    let clientRect = entry.target.getBoundingClientRect();
+                    const clientRect = entry.target.getBoundingClientRect();
                     item.itemWrapperElement.style.setProperty("--width",  `${clientRect.width}px`);
                     item.itemWrapperElement.style.setProperty("--height",  `${clientRect.height}px`);
                     item.subitemElement.style.setProperty("--width", `${clientRect.width}px`);
