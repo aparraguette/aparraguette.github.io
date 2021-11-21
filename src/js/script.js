@@ -143,17 +143,17 @@ function loadContentPromise() {
                             setTimeout(() => {
                                 let routingFromGalleryProject = gallery.projects.find((project) => project.hash == fromRoute);
                                 if (!routingFromGalleryProject) {
-                                    let firstItem = gallery.items.find(item => item.itemWrapperElement.getAttribute("data-pos") == 0);
+                                    let firstItem = gallery.items_curr[0];
                                     if (firstItem) {
                                         let firstItemWidth = parseFloat(window.getComputedStyle(firstItem.itemWrapperElement).getPropertyValue("--width"));
-                                        firstItem.itemWrapperElement.scrollIntoView(true);
+                                        firstItem.itemWrapperElement.scrollIntoView();
                                         gallery.scrollerElement.scrollTop += firstItemWidth * (2 / 3);
                                     }
                                 }
                                 setTimeout(() => {
                                     gallery.scrollerElement.removeAttribute("data-disabled");
                                     document.body.removeAttribute("data-on-loading");
-                                }, 200)
+                                }, 200);
                             }, 100);
                         });
                     },

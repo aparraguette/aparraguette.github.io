@@ -10,8 +10,8 @@ class Router {
     }
     
     getRouteHandlers(route) {
-        let handlers = [];
-        let keys = this.handlers.keys();
+        const handlers = [];
+        const keys = this.handlers.keys();
         let next = keys.next();
         while (!next.done) {
             let value = next.value;
@@ -53,7 +53,7 @@ class GalleryItem {
         this.intersectionObserver = null;
 
         this.itemWrapperElement = domParser.parseFromString(/*html*/`
-            <div class="gallery-item-wrapper" data-hash="${this.hash}" data-pos="${this.pos}" style="--data-color: ${this.project.color}">
+            <div class="gallery-item-wrapper" data-hash="${this.hash}" style="--data-color: ${this.project.color}">
                 <a href="#${this.hash}">
                     ${(() => {
                     let extension = this.img.substr(this.img.length - 3);
@@ -75,7 +75,7 @@ class GalleryItem {
         `, "text/html").body.firstChild;
         this.itemElement = this.itemWrapperElement.querySelector(".gallery-item");
         this.subitemElement = domParser.parseFromString(/*html*/`
-            <div class="gallery-subitem" data-pos="${this.pos}" data-hash="${this.hash}" style="--data-color: ${this.project.color}"></div>
+            <div class="gallery-subitem" data-hash="${this.hash}" style="--data-color: ${this.project.color}"></div>
         `, "text/html").body.firstChild;
     }
 }
@@ -84,10 +84,13 @@ class Gallery {
     constructor(name, hash, items, projects) {
         this.name = name;
         this.hash = hash;
+        this.items_prev = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash), -1));
+        this.items_curr = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash), 0));
+        this.items_next = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash), 1));
         this.items = [
-            ...items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash), -1)),
-            ...items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash),  0)),
-            ...items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash), +1))
+            ...this.items_prev,
+            ...this.items_curr,
+            ...this.items_next
         ];
         this.projects = [];
         this.intersectionObserver = null;
@@ -125,7 +128,7 @@ class Gallery {
                 if (lastScrollOveredGalleryItem !== null) {
                     lastScrollOveredGalleryItem.removeAttribute("data-overed");
                 }
-                let scrollOveredGalleryItem = document.elementsFromPoint(mousePosition.x, mousePosition.y)
+                const scrollOveredGalleryItem = document.elementsFromPoint(mousePosition.x, mousePosition.y)
                     .find(el => el.matches(".gallery-item-wrapper"));
                 if (scrollOveredGalleryItem) {
                     scrollOveredGalleryItem.setAttribute("data-overed", "");
@@ -152,41 +155,49 @@ class Gallery {
             if (!this.scrollerElement.hasAttribute("data-disabled")) {
                 for (let entry of entries) {
                     if (entry.isIntersecting) {
-                        let intersectingItem = this.items.find((item => item.itemWrapperElement == entry.target));
-                        let intersectionSign = Math.sign(entry.boundingClientRect.x);
-                        if (intersectingItem) {
-                            let sameHashItems = this.items.filter(item => item.hash == intersectingItem.hash);
-                            if (intersectingItem.itemWrapperElement.dataset.pos == -1 && intersectionSign == -1) {
-                                let currPosItem = sameHashItems.find((item => item.itemWrapperElement.dataset.pos == 0));
-                                let nextPosItem = sameHashItems.find((item => item.itemWrapperElement.dataset.pos == 1));
-                                if (currPosItem) {
-                                    currPosItem.itemWrapperElement.dataset.pos = 1;
-                                    currPosItem.subitemElement.dataset.pos = 1;
-                                }
-                                if (nextPosItem) {
-                                    nextPosItem.itemWrapperElement.dataset.pos = -1;
-                                    nextPosItem.subitemElement.dataset.pos = -1;
-                                    this.scrollerElement.insertAdjacentElement("afterbegin", nextPosItem.itemWrapperElement);
-                                    this.subscrollerElement.insertAdjacentElement("afterbegin", nextPosItem.subitemElement);
-                                }
-                                intersectingItem.itemWrapperElement.dataset.pos = 0;
-                                intersectingItem.subitemElement.dataset.pos = 0;
+                        const intersectingItem = this.items.find((item => item.itemWrapperElement == entry.target));
+                        const intersectionSign = Math.sign(entry.boundingClientRect.x);
+                        if (this.items_prev.includes(intersectingItem) && intersectionSign == -1) {
+                            if (this.items_next.length > 0) {
+                                
+                                const itemsWrappersRange = document.createRange();
+                                itemsWrappersRange.setStartBefore(this.items_next[0].itemWrapperElement);
+                                itemsWrappersRange.setEndAfter(this.items_next[this.items_next.length - 1].itemWrapperElement);
+
+                                const subitemsRange = document.createRange();
+                                subitemsRange.setStartBefore(this.items_next[0].subitemElement);
+                                subitemsRange.setEndAfter(this.items_next[this.items_next.length - 1].subitemElement);
+
+                                this.scrollerElement.prepend(itemsWrappersRange.extractContents());
+                                this.subscrollerElement.prepend(subitemsRange.extractContents());
+
+                                const curr_items = this.items_curr;
+                                const prev_items = this.items_prev;
+                                const next_items = this.items_next;
+                                this.items_next = curr_items;
+                                this.items_curr = prev_items;
+                                this.items_prev = next_items;
                             }
-                            else if (intersectingItem.itemWrapperElement.dataset.pos == 1 && intersectionSign == 1) {
-                                let currPosItem = sameHashItems.find((item => item.itemWrapperElement.dataset.pos == 0));
-                                let prevPosItem = sameHashItems.find((item => item.itemWrapperElement.dataset.pos == -1));
-                                if (currPosItem) {
-                                    currPosItem.itemWrapperElement.dataset.pos = -1;
-                                    currPosItem.subitemElement.dataset.pos = -1;
-                                }
-                                if (prevPosItem) {
-                                    prevPosItem.itemWrapperElement.dataset.pos = 1;
-                                    prevPosItem.subitemElement.dataset.pos = 1;
-                                    this.scrollerElement.insertAdjacentElement("beforeend", prevPosItem.itemWrapperElement);
-                                    this.subscrollerElement.insertAdjacentElement("beforeend", prevPosItem.subitemElement);
-                                }
-                                intersectingItem.itemWrapperElement.dataset.pos = 0;
-                                intersectingItem.subitemElement.dataset.pos = 0;
+                        }
+                        else if (this.items_next.includes(intersectingItem) && intersectionSign == 1) {
+                            if (this.items_prev.length > 0) {
+                                const itemsWrappersRange = document.createRange();
+                                itemsWrappersRange.setStartBefore(this.items_prev[0].itemWrapperElement);
+                                itemsWrappersRange.setEndAfter(this.items_prev[this.items_prev.length - 1].itemWrapperElement);
+
+                                const subitemsRange = document.createRange();
+                                subitemsRange.setStartBefore(this.items_prev[0].subitemElement);
+                                subitemsRange.setEndAfter(this.items_prev[this.items_next.length - 1].subitemElement);
+
+                                this.scrollerElement.append(itemsWrappersRange.extractContents());
+                                this.subscrollerElement.append(subitemsRange.extractContents());
+
+                                const curr_items = this.items_curr;
+                                const prev_items = this.items_prev;
+                                const next_items = this.items_next;
+                                this.items_prev = curr_items;
+                                this.items_curr = next_items;
+                                this.items_next = prev_items;
                             }
                         }
                     }
@@ -285,7 +296,7 @@ class Project {
     setupImgsCallbacks() {
         const imgsResizeObserver = new ResizeObserver((entries) => {
             for (let entry of entries) {
-                let clientRect = entry.target.getBoundingClientRect();
+                const clientRect = entry.target.getBoundingClientRect();
                 entry.target.style.setProperty("--width",  `${clientRect.width}px`);
                 entry.target.style.setProperty("--height",  `${clientRect.height}px`);
             }
