@@ -43,12 +43,11 @@ class Router {
 }
 
 class GalleryItem {
-    constructor(gallery, img, hash, project, pos) {
+    constructor(gallery, img, hash, project) {
         this.gallery = gallery;
         this.img = img;
         this.hash = hash;
         this.project = project;
-        this.pos = pos;
         this.resizeObserver = null;
         this.intersectionObserver = null;
 
@@ -84,9 +83,9 @@ class Gallery {
     constructor(name, hash, items, projects) {
         this.name = name;
         this.hash = hash;
-        this.items_prev = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash), -1));
-        this.items_curr = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash), 0));
-        this.items_next = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash), 1));
+        this.items_prev = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash)));
+        this.items_curr = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash)));
+        this.items_next = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash)));
         this.items = [
             ...this.items_prev,
             ...this.items_curr,

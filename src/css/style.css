@@ -180,7 +180,7 @@ body[lang="en"] [lang]:not([lang="en"]) {
 }
 
 #nav li {
-	padding: 62px 24px 0px 24px;
+	padding: 62px var(--header-horizontal-padding) 0px var(--header-horizontal-padding);
 }
 
 #nav a:hover {
@@ -264,7 +264,7 @@ body[lang="en"] [lang]:not([lang="en"]) {
 }
 
 #header-banner li {
-	padding-left: 24px;
+	padding-left: var(--header-horizontal-padding);
 	flex: none;
 	text-align: center;
 	white-space: nowrap !important;
@@ -310,8 +310,8 @@ body[lang="en"] [lang]:not([lang="en"]) {
 }
 
 .linkedin-btn {
-	margin-left: 24px;
-	margin-right: 24px;
+	margin-left: var(--header-horizontal-padding);
+	margin-right: var(--header-horizontal-padding);
 	background-image: url("../../media/icons/linkedin.png");
 }
 
@@ -619,7 +619,7 @@ body:not([data-on-intro]) #intro {
 	font-size: calc(1.2 * var(--header-font-size));
 	
 	top: calc(100% - var(--header-height));
-	left: 24px;
+	left: var(--header-horizontal-padding);
 	z-index: 1;
 	pointer-events: auto;
 }
@@ -868,7 +868,7 @@ body:not([data-on-intro]) #intro {
 	}
 
 	.project-content {
-		padding: 24px 0;
+		padding: var(--header-horizontal-padding) 0;
 	}
 
 	.project::-webkit-scrollbar {
@@ -879,7 +879,7 @@ body:not([data-on-intro]) #intro {
 		position: relative;
 		display: block;
 		width: var(--body-width);
-		padding: 0 24px;
+		padding: 0 var(--header-horizontal-padding);
 		height: auto;
 	}
 
