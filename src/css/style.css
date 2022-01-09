@@ -276,6 +276,7 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+	overflow: auto;
 }
 
 #menu > ul {
