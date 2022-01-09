@@ -1,0 +1,142 @@
+{
+    "gallery": {
+        "name": "prints",
+        "hash": "Prints",
+        "items": [
+            {
+                "img": "1.ethno.jpg", 
+                "project": "ethno"
+            },
+            {
+                "img": "2.troiscouleurs.jpg", 
+                "project": "trois-couleurs"
+            },
+            {
+                "img": "3.reorienter.jpg", 
+                "project": "reorienter"
+            },
+            {
+                "img": "4.chaise-dieu.jpg", 
+                "project": "chaise-dieu"
+            },
+            {
+                "img": "5.que-sais-je.jpg", 
+                "project": "que-sais-je"
+            },
+            {
+                "img": "6.passerelle.jpg", 
+                "project": "passerelle"
+            }
+        ]
+    },
+    "projects": [
+        {
+            "name": "que-sais-je",
+            "hash": "Que_sais_je",
+            "color": "#90895e",
+            "imgs": ["1.que_sais-je.jpg", "2.que_sais-je.jpg", "3.que_sais-je.jpg", "4.que_sais-je.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Que sais-je ?",
+                    "subtitle": "Nouvelles couvertures",
+                    "description": "Voici une réponse à une demande de création d’un nouveau principe de couvertures pour les Que Sais-Je?, une collection de livres didactiques exposant l’essentiel d’un sujet particulier dans un format court. Ces couvertures sont directement inspirées par le peintre italien de la renaissance Arcimboldo : ce sont des composition d’allégories du sujet traité en employant différente images d’éléments en rapport avec ce sujet. L’avantage de cette technique est qu’elle donne l’impression que le livre est particulièrement  complet sur le sujet qu’il traite."
+                },
+                "en": {
+                    "title": "What do i know ?",
+                    "subtitle": "New covers design",
+                    "description": "Here is the answer to a request for the creation of a new cover principle for What Do I Know ?, a collection of didactic books exposing the essence of a particular subject in a short format. These covers are directly inspired by the Italian painter of the Renaissance Arcimboldo: these are compositions of allegories of the subject treated using different images of elements related to this subject. The advantage of this technique is that it gives the impression that the book is particularly complete on the subject it talks about."
+                }
+            }
+        },
+        {
+            "name": "reorienter",
+            "hash": "Reorienter",
+            "color": "#6eb3e3",
+            "imgs": ["1.reorienter.jpg", "2.reorienter.jpg", "3.reorienter.jpg", "4.reorienter.jpg", "5.reorienter.jpg", "6.reorienter.jpg", "7.reorienter.jpg", "8.reorienter.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Réorienter",
+                    "subtitle": "Promotion d'une exposition",
+                    "description": "Réorienter est une exposition autour de laquelle s’organise une série de conférence sur l’orientalisme d’hier et d’aujourd’hui, sur tous les fantasmes que suscite l’orient dans nos sociétés occidentales ainsi que leur évolution⁠ à travers le temps. La communication de cet événement se fait grâce à deux affiches principales, plus une affiche de bus. S’ajoute à cela une invitation, un livre sur l’exposition, une pochette de papiers avec crayon fourni pour les conférences et plusieurs cartes postales à trouver dans la boutique du musée."
+                },
+                "en": {
+                    "title": "Réorienter",
+                    "subtitle": "Promotion of an exhibition",
+                    "description": "Réorienter is an exhibition based on a series of conferences about the middle East of yesterday and today, based on all the fantasies that the Orient evokes in our Western societies as well as their evolution through time. The communication of this event is created through two main posters plus a bus poster. There is also an invitation, a book about the exhibition, a paper jacket with a pencil provided for conferences and several postcards found in the museum shop.⁠"
+                }
+            }
+        },
+        {
+            "name": "chaise-dieu",
+            "hash": "Chaise_Dieu",
+            "color": "#454f5a",
+            "imgs": ["1.chaisedieu.jpg", "2.chaisedieu.jpg", "3.chaisedieu.jpg", "4.chaisedieu.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "La Chaise-Dieu",
+                    "subtitle": "Affiche pour un festival de musique classique",
+                    "description": "Depuis 1966, la commune de la Chaise-Dieu accueil au cœur des plateaux de la Haute-Loire, autour de l’abbatiale Saint-Robert, un festival international de musique classique. Le Festival de la Chaise-Dieu propose une programmation haut-de-gamme réunissant des milliers de mélomanes et d’artistes de renommée internationale. De la musique classique, du moyen-âge à aujourd’hui, y est jouée. À l’occasion de mon stage dans le studio de création Hartland Villa, j’ai pu réaliser cette proposition d’affiche pour le festival de 2018."
+                },
+                "en": {
+                    "title": "La Chaise-Dieu",
+                    "subtitle": "Poster for a french classical music festival",
+                    "description": "Since 1966, the village of the Chaise-Dieu welcomes you to the heart of the Haute-Loire plateau, with an international festival of classical music located at the abbey church of Saint-Robert. This festival offers a high-end program bringing together thousands of music lovers and internationally renowned artists. Classical music is played from the Middle Ages to the present. During my internship at the studio Hartland Villa, I designed this poster for the festival."
+                }
+            }
+        },
+        {
+            "name": "ethno",
+            "hash": "Ethno",
+            "color": "#ea9e8d",
+            "imgs": ["1.ethno.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "L'Ethno",
+                    "subtitle": "Hebdomadaire sur l'ethnologie",
+                    "description": "L’Ethno est un nouveau journal hebdomadaire ayant pour thème l’ethnologie. Chaque semaine, le journal traiterait exclusivement une tribu, ethnie, population ou civilisation. Tous les articles seront concentrés autour de leur histoire ou bien d’un aspect de leur vie; leur langage, leurs traditions, leurs arts, leur nourriture, etc...Chaque semaine la couleur du logo et des soulignements changerait pour s’accorder avec le peuple évoqué. Cette semaine, le journal traite des Wodaabes, une ethnie nomade appartenant au peuple des peuls vivant entre le Nigeria le Bénin et le Niger."
+                },
+                "en": {
+                    "title": "The Ethno",
+                    "subtitle": "Weekly newspaper on ethnology",
+                    "description": "Ethno is a new weekly newspaper based on the theme of ethnology. Each week, the newspaper deals exclusively with a tribe, ethnic group, population or civilization. All articles are focused around their history or an aspect of their lives: their language, their traditions, their arts, their food, etc. Each week, the colour of the logo and highlighted phrases change in keeping with the given subject. This week, the paper deals with the Wodaabes, a nomadic tribe belonging to the Peul people living between Nigeria, Benin and Niger."
+                }
+            }
+        },
+        {
+            "name": "passerelle",
+            "hash": "Passerelle",
+            "color": "#435b8f",
+            "imgs": ["1.passerelle.mp4", "2.passerelle.mp4", "3.passerelle.jpg", "4.passerelle.jpg", "5.passerelle.jpg", "6.passerelle.jpg", "7.passerelle.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Passerelle",
+                    "subtitle": "Édition",
+                    "description": "Passerelle est un livre sur un projet architectural de Hailun Qiu réalisé en hommage au Corbusier. Il serait construit sur la place San Pantalon, à Venise. Le livre est divisé en deux parties. La première partie retrace la réflexion qui a mené Hailun Qiu à la création de Passerelle. Pour souligner son chemin de pensée, chaque page dévoile un élément de la page précédente et suivante grâce à un système de fenêtres découpées et de feuilles de plastique transparentes. La deuxième partie montre la réalisation et le résultat final."
+                },
+                "en": {
+                    "title": "Foot-bridge",
+                    "subtitle": "Book",
+                    "description": "Foot-Bridge is a book presenting an architectural project of Hailun Qiu that was in tribute to Le Corbusier. It was built on the San Pantalon square in Venice. The book is divided into two sections. The first section traces the inspiration that led Hailun Qiu to the creation of Gateway. To emphasize her way of thinking, each page reveals an element of the previous page and the next page thanks to a system of cutout windows and transparent plastic sheets. The second section shows the creation of the project and the final result."
+                }
+            }
+        },
+        {
+            "name": "trois-couleurs",
+            "hash": "Trois_Couleurs",
+            "color": "#33684a",
+            "imgs": ["1.troiscouleurs.jpg", "11.troiscouleurs.jpg", "12.troiscouleurs.jpg", "13.troiscouleurs.jpg", "14.troiscouleurs.jpg", "15.troiscouleurs.jpg", "16.troiscoueurs.jpg", "16.troiscouleurs.mp4", "17.troiscouleurs.jpg", "18.troiscouleurs.jpg", "19.troiscouleurs.jpg", "2.troiscouleurs.jpg", "20.picto_cinema.mp4", "21.troiscouleurs.jpg", "22.troiscouleurs.jpg", "23.troiscouleurs.jpg", "24.troiscouleurs.jpg", "25.troiscouleurs.jpg", "3.troiscouleurs.jpg", "4.troiscouleurs.jpg", "5.troiscouleurs.jpg", "6.troiscouleurs.jpg", "7.troiscouleurs.jpg", "8.troiscouleurs.jpg", "9.troiscouleurs.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Troiscouleurs",
+                    "subtitle": "Refonte d'un magazine cinéphile",
+                    "description": "Refonte totale de Troiscouleurs, magazine sur le Cinéma distribué par les cinémas du mk2. La demande consistait en la création d'un nouveau format et d'une nouvelle mise en page pour un magazine de 62 pages, la direction artistique des shootings et des illustrations, ainsi que le design de 35 illustrations «portraits» et 32 pictogrammes sur les genres cinématographique. La mise en page est claire et ludique, légèrement inspirée d’un style fanzine."
+                },
+                "en": {
+                    "title": "Troiscouleurs",
+                    "subtitle": "Redesign of a movie magazine",
+                    "description": "Total redesign of Troiscouleurs, a magazine on Cinema distributed by the mk2 cinemas. The request consisted in the creation of a new format and layout for a 62-page magazine, the artistic direction of the shootings and illustrations, as well as the design of 35 \"portrait\" illustrations and 32 pictograms on cinematic genres. The layout is clear and playful, slightly inspired by a fanzine style."
+                }
+            }
+        }
+    ]
+}

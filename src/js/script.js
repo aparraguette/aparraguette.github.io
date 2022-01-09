@@ -2,6 +2,7 @@ const router = new Router();
 
 const langBtn = document.getElementById("lang-btn");
 
+const slideshow = document.getElementById("slideshow");
 const header = document.getElementById("header");
 const headerTitle = document.getElementById("header-title");
 const headerBanner = document.getElementById("header-banner");
@@ -24,13 +25,24 @@ const introTransitionDurationMs = parseFloat(window.getComputedStyle(document.do
 const langs = ["fr", "en"];
 const defaultLang = langs[0];
 const contentRoot = "media/content/";
-const contentItems = ["identites", /*"illustrations",*/ "photographies", /*"prints"*/];
+const contentItems = ["identites", "illustrations", "photographies", "prints"];
 const mousePosition = {x: 0, y: 0};
 
 const content = {
     galleries: [],
     projects: []
 };
+
+window.addEventListener("mousemove", (event) => {
+    mousePosition.x = event.clientX;
+    mousePosition.y = event.clientY;
+});
+
+document.addEventListener("touchmove", (event) => {
+    const touch = event.touches.item(0);
+    mousePosition.x = touch.clientX;
+    mousePosition.y = touch.clientY;
+});
 
 headerTitle.addEventListener("mouseenter", () => {
     document.body.setAttribute("data-with-menu", "");
@@ -49,7 +61,7 @@ menuContainer.addEventListener("mouseleave", () => {
 });
 
 function handleHashChange(oldHash, newHash) {
-    if (newHash === "") {
+    if (!newHash) {
         document.body.setAttribute("data-index", "");
     }
     else {
@@ -142,9 +154,10 @@ function loadContentPromise() {
                             setTimeout(() => {
                                 let routingFromGalleryProject = gallery.projects.find((project) => project.hash == fromRoute);
                                 if (!routingFromGalleryProject) {
-                                    let firstItem = gallery.items_curr[0];
-                                    if (firstItem) {
-                                        let firstItemWidth = parseFloat(window.getComputedStyle(firstItem.itemWrapperElement).getPropertyValue("--width"));
+                                    const firstItem = gallery.items_curr[0];
+                                    const lastItem = gallery.items_curr[gallery.items_curr.length - 1];
+                                    if (firstItem && lastItem) {
+                                        const firstItemWidth = parseFloat(window.getComputedStyle(firstItem.itemWrapperElement).getPropertyValue("--width"));
                                         firstItem.itemWrapperElement.scrollIntoView();
                                         gallery.scrollerElement.scrollTop += firstItemWidth * (2 / 3);
                                     }
@@ -232,17 +245,6 @@ function loadContentPromise() {
     });
 };
 
-window.addEventListener("mousemove", (event) => {
-    mousePosition.x = event.clientX;
-    mousePosition.y = event.clientY;
-});
-
-document.addEventListener("touchmove", (event) => {
-    const touch = event.touches.item(0);
-    mousePosition.x = touch.clientX;
-    mousePosition.y = touch.clientY;
-});
-
 headerContact.addEventListener("click", () => {
     if (headerContact.getAttribute("data-closed") !== null) {
         headerContact.removeAttribute("data-closed");
@@ -281,12 +283,12 @@ window.addEventListener("load", () => {
                 document.body.setAttribute("data-on-intro", "");
                 setTimeout(() => {
                     document.body.removeAttribute("data-on-intro");
+                    Array.from(slideshow.querySelectorAll("video")).forEach((video) => video.play());
                 }, introTransitionDurationMs);
             }
         });
     });
 });
-
 
 const headerObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {

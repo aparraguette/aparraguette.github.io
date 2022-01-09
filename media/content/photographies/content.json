@@ -98,7 +98,7 @@
             "name": "licorne",
             "hash": "Licorne",
             "color": "#ca3b37",
-            "imgs": ["2.licorne.mp4"]
+            "imgs": ["1.composition.mp4", "2.licorne.mp4"]
         },
         {
             "name": "minotaure",

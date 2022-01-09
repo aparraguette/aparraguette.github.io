@@ -1,0 +1,208 @@
+{
+    "gallery": {
+        "name": "illustrations",
+        "hash": "Illustrations",
+        "items": [
+            {
+                "img": "1.enigmes.jpg", 
+                "project": "enigmes"
+            },
+            {
+                "img": "2.monstre.jpg", 
+                "project": "monstre"
+            },
+            {
+                "img": "3.mars.jpg", 
+                "project": "mars"
+            },
+            {
+                "img": "4.pcam.jpg", 
+                "project": "pcam"
+            },
+            {
+                "img": "5.summer-bodies.jpg", 
+                "project": "summer-bodies"
+            },
+            {
+                "img": "6.cyrk.jpg", 
+                "project": "cyrk"
+            },
+            {
+                "img": "7.nus.jpg", 
+                "project": "nus"
+            },
+            {
+                "img": "8.academie.jpg", 
+                "project": "academie"
+            },
+            {
+                "img": "9.cosmologie.jpg", 
+                "project": "cosmologie"
+            }
+        ]
+    },
+    "projects": [
+        {
+            "name": "enigmes",
+            "hash": "Enigmes",
+            "color": "#4d3a6",
+            "imgs": ["1.sol.jpg", "2.froid.jpg", "3.vieux.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Enigmes",
+                    "subtitle": "Extraits d'ilustrations",
+                    "description": "Ces dessins sont extraits d’une série d’illustrations d’énigmes. Ils sont faitaux crayons à papier, à l’aquarelle et à l’acrylique. Ces dessins sont censés être des indices destinés à aider le public à trouver la réponse ; ce sontdes allégories qui représentent Les réponses aux énigmes posées. Ici, par exemple, on peut voir le soleil (sous la forme de la jeune femme blonde), les heures (la vieille femme verte) et le froid (l’homme chauve)."
+                },
+                "en": {
+                    "title": "Riddles",
+                    "subtitle": "Illustration extracts",
+                    "description": "These drawings are taken from a series of illustrations presenting enigmas. They are made with pencils, watercolour and acrylic. These drawings are designed to give clues to help the public find the answers, in the form of allegories that represent answers to the riddles posed. Here, for example, you can see the sun (in the form of the young blonde woman), the hours (the old green woman) and the cold (the old bald-headed man)."
+                }
+            }
+        },
+        {
+            "name": "summer-bodies",
+            "hash": "Summer_bodies",
+            "color": "#e1e9cb",
+            "imgs": ["1.summerbodies.jpg", "2.summerbodies.jpg", "3.summerbodies.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Summer bodies",
+                    "subtitle": "Illustrations spécial été",
+                    "description": "Illustrations pour l'édition spéciale été d'un magazine."
+                },
+                "en": {
+                    "title": "Summer bodies",
+                    "subtitle": "Illustrations summer issue",
+                    "description": "Illustrations for the summer special issue of a magazine."
+                }
+            }
+        },
+        {
+            "name": "pcam",
+            "hash": "PCAM",
+            "color": "#d1d1d1",
+            "imgs": ["a.licence.jpg", "b.licence.jpg", "c.licence.jpg", "d.licence.jpg", "e.licence.jpg", "f.licence.jpg", "g.licence.jpg", "h.licence.jpg", "i.licence.jpg", "j.licence.jpg", "k.licence.jpg", "l.licence.jpg", "m.licence.jpg", "n.licence.jpg", "o.licence.jpg", "p.licence.mp4", "q.licence.jpg", "r.licence.jpg", "s.licence.jpg", "t.licence.jpg", "u.licence.jpg", "v.licence.mp4"],
+            "lang": {
+                "fr": {
+                    "title": "P.C.A.M.",
+                    "subtitle": "Projet de création des armes mythologiques",
+                    "description": "Ce projet consiste en la création d’un univers futuriste où un gouvernement mondial se servirait des superstitions et croyances du peuple pour le surveiller et le contrôler sans en avoir l’air. Pour cela, il créerait des intelligences artificielles liées à des corps robotiques. De l’extérieur, les robots apparaitraient aux populations comme des incarnations de créatures mythologiques. L’apparence des créatures seraient adaptées aux croyances locales (ex: en Égypte, on trouverait des créatures mythologiques égyptiennes). cette édition montre le début du projet ; la réalisation des premiers plans et du design des créatures."
+                },
+                "en": {
+                    "title": "M.W.C.P.",
+                    "subtitle": "Mythological weapons creation project",
+                    "description": "This project consists in the creation of a futuristic universe where a world government would use the superstitions and beliefs of the people to monitor and control it without appearing to do so. For this, it would create artificial intelligences linked to robotic bodies. From the outside, robots would appear to the populations as incarnations of mythological creatures. The appearance of creatures would be adapted to local beliefs (eg: Egyptian mythological creatures would be found in Egypt). This project shows the beginning of the project; the creation of the first plans and designs of the creatures."
+                }
+            }
+        },
+        {
+            "name": "monstre",
+            "hash": "Monstre",
+            "color": "#496085",
+            "imgs": ["1.monstre.mp4", "2.edited.jpg", "3.edited.jpg", "4.edited.jpg", "5.edited.jpg", "6.edited.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Le masque du monstre",
+                    "subtitle": "Essais graphique",
+                    "description": "Essais graphique sur le pourquoi de la non-prise en compte de la banalité du mal par le monde politique et le grand public presque 60 ans après sa théorisation par la philosophe Hannah Arendt. Il s’agit d’une bande dessinée de vulgarisation de concepts philosophiques et sociologiques à travers des dessins simples et brut en noir et blanc."
+                },
+                "en": {
+                    "title": "Monster mask",
+                    "subtitle": "Graphic essay",
+                    "description": "A graphic essay on the why of the banality of evil by the political world and the general public almost 60 years after its theorization by the philosopher Hannah Arendt.It is a comic strip popularizing philosophical and sociological concepts through simple and raw black and white drawings."
+                }
+            }
+        },
+        {
+            "name": "mars",
+            "hash": "Mars",
+            "color": "#db7e85",
+            "imgs": ["a.mars.mp4", "b.mars.jpg", "c.mars.jpg", "d.mars.jpg", "e.mars.jpg", "f.mars.jpg", "g.mars.jpg", "h.mars.jpg", "i.mars.jpg", "j.mars.jpg", "k.mars.jpg", "l.mars.jpg", "m.mars.jpg", "n.mars.png", "o.mars.png", "p.mars.png", "q.mars.png", "r.mars.png", "s.mars.png", "t.mars.png", "u.mars.png", "v.mars.png"],
+            "lang": {
+                "fr": {
+                    "title": "Quand on ira sur Mars",
+                    "subtitle": "Recherches pour un projet de film",
+                    "description": "Quand on ira sur Mars est un projet de film de science fiction. Face à leurs problèmes écologiques et à l'épuisement des ressources terriennes, les gouvernements terriens décident de faire d'une pierre de coup en envoyant les populations les plus pauvres coloniser Mars. Après plusieurs siècles de difficultés, les martiens ont réussi à transformer Mars en paradis et, à l'issu de deux guerres successives, à se libérer du joug terrien. De leur côté, les terriens ont laissé la situation écologique se dégrader. Coupés des res­­­­sources martiennes qui maintenaient leur niveau de vie depuis la prise d'indépendance de la planète rouge, la Terre est devenue invivable et ses habitants meurent de faim. Face à cette situation, Edly et la petite Mnémi, comme des millions d'autre terriens, tentent le tout pour le tout pour rejoindre Mars. Mais quand, par un concours de circonstances, ils se retrouvent pris en tenaille entre des pilleurs terriens et la brigade martienne qui les pourchasse, le voyage devient encore plus compliqué et dangereux que prévu..."
+                },
+                "en": {
+                    "title": "When we will go to Mars",
+                    "subtitle": "Research for a movie project",
+                    "description": "When we will go to Mars is a science fiction film project. To resolve their ecological problems and the depletion of Earth's resources, the Earth governments decided send the poorest populations to colonize Mars. After several centuries of hardship, the Martians managed to transform Mars into paradise and, after two successive wars, to free themselves from the yoke of the Earth. Meanwhile, the Earth's ecological situation has continued to deteriorate. Cut off from the Martian resources that maintained their high standard of living since the independence of the Red Planet, the Earth has become unlivable and its inhabitants are starving. Faced with the situation, Edly and little Mnemi, like millions of other earthlings, decide to try everything to reach Mars. However, when they find themselves caught in pincers between pirates and the Martian brigade who chases them, the journey becomes even more complicated and dangerous than expected..."
+                }
+            }
+        },
+        {
+            "name": "cyrk",
+            "hash": "Cyrk",
+            "color": "#823045",
+            "imgs": ["1.contortioniste.jpg", "2.acrobate.jpg", "3.dresseuse.jpg", "4.clown.jpg", "5.tiger.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Cyrk",
+                    "subtitle": "Affiches pour le mois du graphisme",
+                    "description": "Propositions d'affiches pour le Mois du Graphisme d'Échirolles 2018, Pologne : Une Révolution Graphique. Pour célébrer l'héritage graphique polonais, l'édition 2018 de l'événement a proposé aux élèves de grandes écoles d'art de différents pays de créer des affiches autour de l'un des thèmes de prédilection de l'école polonaise, le cirque. Mon travail propose de mettre en miroir deux aspects contradictoires du cirque;  son côté festif et extravagant à travers quatre affiches d'un côté et de l'autre, par une unique autre, l'une de ses dures réalités, la maltraitance  animale. L'affiche de la contorsionniste rose a été sélectionnée et exposée."
+                },
+                "en": {
+                    "title": "Cyrk",
+                    "subtitle": "Poster proposals for the echirolles month",
+                    "description": "Poster Proposals for the Echirolles Month of Graphic Design 2018, Poland: A Graphic Revolution. To celebrate the Polish graphic heritage, the 2018's event offered students of great art schools from different countries to create posters around one of the favorite themes of the Polish school, the circus.My project proposes to display two opposite aspects of the circus, the festive and extravagant side through four posters on one hand and on the other hand, through a single poster, one of its hard realities, animal abuse. The poster of the pink contortionist was selected and exhibited."
+                }
+            }
+        },
+        {
+            "name": "nus",
+            "hash": "Nus",
+            "color": "#9ab4c0",
+            "imgs": ["a-1.nu.jpg", "a-2.nu.jpg", "b-1.nu.jpg", "b-2.nu.jpg", "c-1.nu.jpg", "c-2.nu.jpg", "d.nu.jpg", "e-1.nu.jpg", "e-2.nu.jpg", "f-1.nu.jpg", "f-2.nu.jpg", "g-1.nu.jpg", "g-2.nu.jpg", "h.nu.jpg", "i-2.nu.jpg", "j-1.nu.jpg", "j-2.nu.jpg", "k-1.nu.jpg", "k-2.nu.jpg", "l-1.nu.jpg", "l-2.nu.jpg", "m-1.nu.jpg", "m-2.nu.jpg", "n.nu.jpg", "o-1.nu.jpg", "o-2.nu.jpg", "p-1.nu.jpg", "p-2.nu.jpg", "q.nu.jpg", "r-1.nu.jpg", "r-2.nu.jpg", "s-1.nu.jpg", "s-2.nu.jpg", "t-1.nu.jpg", "t-2.nu.jpg", "t-3.nu.jpg", "u-1.nu.jpg", "u-2.nu.jpg", "v-1.nu.jpg", "v-2.nu.jpg", "v-3.nu.jpg", "v-4.nu.jpg", "w-1.nu.jpg", "w-2.nu.jpg", "w-3.nu.jpg", "x-1.nu.jpg", "x-2.nu.jpg", "x-3.nu.jpg", "y.nu.jpg", "z-1.nu.jpg", "z-2.nu.jpg", "z-3.nu.jpg", "z-4.nu.jpg", "z-5.nu.jpg", "z-6.nu.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "",
+                    "subtitle": "",
+                    "description": ""
+                },
+                "en": {
+                    "title": "",
+                    "subtitle": "",
+                    "description": ""
+                }
+            }
+        },
+        {
+            "name": "cosmologie",
+            "hash": "Cosmologie",
+            "color": "#9ab4c0",
+            "imgs": ["a.cmm.jpg", "b.cmm.jpg", "c.cmm.png", "d.cmm.jpg", "d2.cmm.mp4", "e.cmm.jpg", "e2.cmm.mp4", "f.cmm.jpg", "f2.cmm.mp4", "g.cmm.jpg", "g2.cmm.mp4", "h.cmm.jpg", "i.cmm.jpg", "j.cmm.jpg", "k.cmm.jpg", "l.cmm.jpg", "m.cmm.jpg", "n.cmm.jpg", "o.cmm.jpg", "p.cmm.jpg", "q.cmm.jpg", "r.cmm.jpg", "s.cmm.jpg", "t.cmm.jpg", "u.cmm.jpg", "v.cmm.jpg", "w.cmm.jpg", "x.cmm.jpg", "y.cmm.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "Cosmologie du monde moderne",
+                    "subtitle": "Livre illustré & sculptures en impression 3d",
+                    "description": "Cosmologie du monde moderne a pour objectif de déconstruire les croyances fondatrices sur lesquelles est bâtie notre société moderne en remettant le spectateur/lecteur face à leur statut de croyances quasi religieuses et non de principes rationnels. Pour cela j’ai écrit et désigné un livre illustré narrant l’histoire de ces croyances du monde moderne en reprenant les codes artistiques des bibles moyenâgeuses. Il est présenté entouré par des sculptures allégoriques des croyances citées, tels des dieux, des idoles à vénérer."
+                },
+                "en": {
+                    "title": "Cosmology of the modern world",
+                    "subtitle": "Illustrated book & 3d printed sculptures",
+                    "description": "Cosmology of the modern world aims to deconstruct the founding beliefs on which our modern society is built by confronting the observer/reader with their status as quasi-religious beliefs and not rational facts. To this end, I wrote and designed an illustrated book narrating the history of these beliefs in the modern world, using the artistic codes of medieval bibles. It is presented surrounded by allegorical sculptures of the mentioned beliefs, like gods, idols to be venerated."
+                }
+            }
+        },
+        {
+            "name": "academie",
+            "hash": "Academie",
+            "color": "#3c454a",
+            "imgs": ["a.les_buches.jpg", "b.buste_de_cheval.jpg", "c.buste_du_grand_conde.jpg", "d.moustachu.jpg", "e.assise_cheveux_frises.jpg", "f.les_orchidees.jpg", "g.esclave_liberee.jpg", "h.peinture_enfance.jpg", "i.pied.png", "j.echarpe.jpg", "k.foret.jpg", "l.pingoins.jpg"],
+            "lang": {
+                "fr": {
+                    "title": "",
+                    "subtitle": "",
+                    "description": ""
+                },
+                "en": {
+                    "title": "",
+                    "subtitle": "",
+                    "description": ""
+                }
+            }
+        }
+    ]
+}

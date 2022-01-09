@@ -1,6 +1,15 @@
 const domParser = new DOMParser();
 
 class Router {
+    /**
+     * Route handlers currently registered.
+     * @type {Map<string, {
+     *  onEnter: (fromRoute) => void,
+     *  onLeave: (toRoute) => void
+     * }}
+     */
+    handlers;
+    
     constructor() {
         this.handlers = new Map();
     }
@@ -77,20 +86,38 @@ class GalleryItem {
             <div class="gallery-subitem" data-hash="${this.hash}" style="--data-color: ${this.project.color}"></div>
         `, "text/html").body.firstChild;
     }
+
+    clone() {
+        return new GalleryItem(this.gallery, this.img, this.hash, this.project);
+    }
 }
 
 class Gallery {
+    /**
+     * @type {HTMLElement}
+     */
+    scrollerElement;
+    
+    /**
+     * @type {HTMLElement}
+     */
+    subscrollerElement;
+
+    /**
+     * @type {Set<GalleryItem>}
+     */
+    #items;
+
+    /**
+     * @type {Array<GalleryItem>}
+     */
+    items;
+
     constructor(name, hash, items, projects) {
         this.name = name;
         this.hash = hash;
-        this.items_prev = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash)));
-        this.items_curr = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash)));
-        this.items_next = items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash)));
-        this.items = [
-            ...this.items_prev,
-            ...this.items_curr,
-            ...this.items_next
-        ];
+        this.#items = new Set(items.map(item => new GalleryItem(this, item.img, item.hash, projects.find((project) => project.hash === item.hash))));
+        this.items = Array.from(this.#items);
         this.projects = [];
         this.intersectionObserver = null;
         
@@ -115,41 +142,64 @@ class Gallery {
         let scrollInitiator = null;
         let lastScrollOveredGalleryItem = null;
 
+        function updateOveredItem() {
+            const scrollOveredGalleryItem = document.elementsFromPoint(mousePosition.x, mousePosition.y)
+                    .find(el => el.matches(".gallery-item-wrapper"));
+            if (scrollOveredGalleryItem) {
+                scrollOveredGalleryItem.setAttribute("data-overed", "");
+                lastScrollOveredGalleryItem = scrollOveredGalleryItem;
+            }
+        }
+
         this.scrollerElement.addEventListener("scroll", (event) => {
             if (scrollInitiator == this.subscrollerElement) {
                 scrollInitiator = null;
                 event.preventDefault();
-                return false;
             }
-            requestAnimationFrame(() => {
-                scrollInitiator = this.scrollerElement;
-                this.subscrollerElement.scrollTop = this.scrollerElement.scrollTop;
-                if (lastScrollOveredGalleryItem !== null) {
-                    lastScrollOveredGalleryItem.removeAttribute("data-overed");
-                }
-                const scrollOveredGalleryItem = document.elementsFromPoint(mousePosition.x, mousePosition.y)
-                    .find(el => el.matches(".gallery-item-wrapper"));
-                if (scrollOveredGalleryItem) {
-                    scrollOveredGalleryItem.setAttribute("data-overed", "");
-                    lastScrollOveredGalleryItem = scrollOveredGalleryItem;
-                }
-            });
+            else {
+                requestAnimationFrame(() => {
+                    scrollInitiator = this.scrollerElement;
+                    this.subscrollerElement.scrollTop = this.scrollerElement.scrollTop;
+                    if (lastScrollOveredGalleryItem !== null) {
+                        lastScrollOveredGalleryItem.removeAttribute("data-overed");
+                    }
+                    updateOveredItem();
+                });
+            }
         });
 
         this.subscrollerElement.addEventListener("scroll", (event) => {
             if (scrollInitiator == this.scrollerElement) {
                 scrollInitiator = null;
                 event.preventDefault();
-                return;
             }
-            requestAnimationFrame(() => {
-                scrollInitiator = this.subscrollerElement;
-                this.scrollerElement.scrollTop = this.subscrollerElement.scrollTop;
-            });
+            else {
+                requestAnimationFrame(() => {
+                    scrollInitiator = this.subscrollerElement;
+                    this.scrollerElement.scrollTop = this.subscrollerElement.scrollTop;
+                });
+            }
         });
     }
 
     setupInfiniteScrolling() {
+        this.items_curr = Array.from(this.#items);
+        this.items_prev = this.items_curr.map(item => item.clone());
+        this.items_next = this.items_curr.map(item => item.clone());
+        
+        this.items = [
+            ...this.items_prev,
+            ...this.items_curr,
+            ...this.items_next
+        ];
+
+        this.scrollerElement.replaceChildren(
+            ...this.items.map(item => item.itemWrapperElement)
+        );
+        this.subscrollerElement.replaceChildren(
+            ...this.items.map(item => item.subitemElement)
+        );
+
         const scrollerIntersectionObserverCallback = (entries) => {
             if (!this.scrollerElement.hasAttribute("data-disabled")) {
                 for (let entry of entries) {
@@ -158,7 +208,6 @@ class Gallery {
                         const intersectionSign = Math.sign(entry.boundingClientRect.x);
                         if (this.items_prev.includes(intersectingItem) && intersectionSign == -1) {
                             if (this.items_next.length > 0) {
-                                
                                 const itemsWrappersRange = document.createRange();
                                 itemsWrappersRange.setStartBefore(this.items_next[0].itemWrapperElement);
                                 itemsWrappersRange.setEndAfter(this.items_next[this.items_next.length - 1].itemWrapperElement);
