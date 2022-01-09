@@ -104,6 +104,11 @@ class Gallery {
     subscrollerElement;
 
     /**
+     * @type {number}
+     */
+    subscrollerOffset;
+
+    /**
      * @type {Set<GalleryItem>}
      */
     #items;
@@ -120,6 +125,7 @@ class Gallery {
         this.items = Array.from(this.#items);
         this.projects = [];
         this.intersectionObserver = null;
+        this.subscrollerOffset = 0;
         
         this.galleryElement = domParser.parseFromString(/*html*/`
             <main id="${this.name}" class="gallery">
@@ -152,32 +158,36 @@ class Gallery {
         }
 
         this.scrollerElement.addEventListener("scroll", (event) => {
-            if (scrollInitiator == this.subscrollerElement) {
-                scrollInitiator = null;
-                event.preventDefault();
-            }
-            else {
-                requestAnimationFrame(() => {
-                    scrollInitiator = this.scrollerElement;
-                    this.subscrollerElement.scrollTop = this.scrollerElement.scrollTop;
-                    if (lastScrollOveredGalleryItem !== null) {
-                        lastScrollOveredGalleryItem.removeAttribute("data-overed");
-                    }
-                    updateOveredItem();
-                });
+            if (!this.scrollerElement.hasAttribute("data-disabled")) {
+                if (scrollInitiator == this.subscrollerElement) {
+                    scrollInitiator = null;
+                    event.preventDefault();
+                }
+                else {
+                    requestAnimationFrame(() => {
+                        scrollInitiator = this.scrollerElement;
+                        this.subscrollerElement.scrollTop = this.scrollerElement.scrollTop - this.subscrollerOffset;
+                        if (lastScrollOveredGalleryItem !== null) {
+                            lastScrollOveredGalleryItem.removeAttribute("data-overed");
+                        }
+                        updateOveredItem();
+                    });
+                }
             }
         });
 
         this.subscrollerElement.addEventListener("scroll", (event) => {
-            if (scrollInitiator == this.scrollerElement) {
-                scrollInitiator = null;
-                event.preventDefault();
-            }
-            else {
-                requestAnimationFrame(() => {
-                    scrollInitiator = this.subscrollerElement;
-                    this.scrollerElement.scrollTop = this.subscrollerElement.scrollTop;
-                });
+            if (!this.scrollerElement.hasAttribute("data-disabled")) {
+                if (scrollInitiator == this.scrollerElement) {
+                    scrollInitiator = null;
+                    event.preventDefault();
+                }
+                else {
+                    requestAnimationFrame(() => {
+                        scrollInitiator = this.subscrollerElement;
+                        this.scrollerElement.scrollTop = this.subscrollerElement.scrollTop + this.subscrollerOffset;
+                    });
+                }
             }
         });
     }

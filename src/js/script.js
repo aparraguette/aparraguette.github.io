@@ -44,20 +44,13 @@ document.addEventListener("touchmove", (event) => {
     mousePosition.y = touch.clientY;
 });
 
-headerTitle.addEventListener("mouseenter", () => {
-    document.body.setAttribute("data-with-menu", "");
-});
-
-headerTitle.addEventListener("mouseleave", () => {
-    document.body.removeAttribute("data-with-menu");
-});
-
-menuContainer.addEventListener("mouseenter", () => {
-    document.body.setAttribute("data-with-menu", "");
-});
-
-menuContainer.addEventListener("mouseleave", () => {
-    document.body.removeAttribute("data-with-menu");
+[headerTitle, menuContainer].forEach((menuAreaElement) => {
+    menuAreaElement.addEventListener("mouseenter", () => {
+        document.body.setAttribute("data-with-menu", "");
+    });
+    menuAreaElement.addEventListener("mouseleave", () => {
+        document.body.removeAttribute("data-with-menu");
+    });
 });
 
 function handleHashChange(oldHash, newHash) {
@@ -155,11 +148,13 @@ function loadContentPromise() {
                                 let routingFromGalleryProject = gallery.projects.find((project) => project.hash == fromRoute);
                                 if (!routingFromGalleryProject) {
                                     const firstItem = gallery.items_curr[0];
-                                    const lastItem = gallery.items_curr[gallery.items_curr.length - 1];
-                                    if (firstItem && lastItem) {
-                                        const firstItemWidth = parseFloat(window.getComputedStyle(firstItem.itemWrapperElement).getPropertyValue("--width"));
+                                    const middleItem = gallery.items_curr[Math.trunc(gallery.items_curr.length / 2)];
+                                    if (firstItem && middleItem) {
+                                        const firstItemWidth = parseFloat(window.getComputedStyle(firstItem.itemWrapperElement).getPropertyValue("width"));
                                         firstItem.itemWrapperElement.scrollIntoView();
+                                        middleItem.subitemElement.scrollIntoView();
                                         gallery.scrollerElement.scrollTop += firstItemWidth * (2 / 3);
+                                        gallery.subscrollerOffset = gallery.scrollerElement.scrollTop - gallery.subscrollerElement.scrollTop;
                                     }
                                 }
                                 setTimeout(() => {

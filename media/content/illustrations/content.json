@@ -171,7 +171,7 @@
         {
             "name": "cosmologie",
             "hash": "Cosmologie",
-            "color": "#9ab4c0",
+            "color": "#ddb158",
             "imgs": ["a.cmm.jpg", "b.cmm.jpg", "c.cmm.png", "d.cmm.jpg", "d2.cmm.mp4", "e.cmm.jpg", "e2.cmm.mp4", "f.cmm.jpg", "f2.cmm.mp4", "g.cmm.jpg", "g2.cmm.mp4", "h.cmm.jpg", "i.cmm.jpg", "j.cmm.jpg", "k.cmm.jpg", "l.cmm.jpg", "m.cmm.jpg", "n.cmm.jpg", "o.cmm.jpg", "p.cmm.jpg", "q.cmm.jpg", "r.cmm.jpg", "s.cmm.jpg", "t.cmm.jpg", "u.cmm.jpg", "v.cmm.jpg", "w.cmm.jpg", "x.cmm.jpg", "y.cmm.jpg"],
             "lang": {
                 "fr": {
