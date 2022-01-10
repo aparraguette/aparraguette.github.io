@@ -203,10 +203,13 @@ class Gallery {
             ...this.items_next
         ];
 
-        this.scrollerElement.replaceChildren(
+        this.scrollerElement.textContent = "";
+        this.scrollerElement.appendChild(
             ...this.items.map(item => item.itemWrapperElement)
         );
-        this.subscrollerElement.replaceChildren(
+
+        this.subscrollerElement.textContent = "";
+        this.subscrollerElement.appendChild(
             ...this.items.map(item => item.subitemElement)
         );
 

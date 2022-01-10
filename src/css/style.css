@@ -362,7 +362,7 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	/*background-image: url("../../media/nav/AP.gif");*/
+	background-image: url("../../media/nav/AP.gif");
 	background-size: 162px 288px;
 	background-position: center;
 	background-repeat: no-repeat;
