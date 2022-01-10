@@ -204,12 +204,12 @@ class Gallery {
         ];
 
         this.scrollerElement.textContent = "";
-        this.scrollerElement.appendChild(
+        this.scrollerElement.append(
             ...this.items.map(item => item.itemWrapperElement)
         );
 
         this.subscrollerElement.textContent = "";
-        this.subscrollerElement.appendChild(
+        this.subscrollerElement.append(
             ...this.items.map(item => item.subitemElement)
         );
 
