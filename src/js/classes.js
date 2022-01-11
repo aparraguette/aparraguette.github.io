@@ -73,8 +73,8 @@ class GalleryItem {
                         case "mov":
                         case "mp4":
                             return /*html*/`
-                            <video class="gallery-item" data-hash="${this.hash}" autoplay>
-                                <source type="video/${extension == "mp4" ? "mp4" : "quicktime"}" src="${contentRoot}${this.gallery.name}/gallery/${this.img}"></source>
+                            <video class="gallery-item" data-hash="${this.hash}" autoplay muted loop playsinline>
+                                <source type="video/${extension}" src="${contentRoot}${this.gallery.name}/gallery/${this.img}"></source>
                             </video>`;
                     }
                 })()}

@@ -830,6 +830,7 @@ body:not([data-on-intro]) #intro {
 	.project-content {
 		margin-top: 0;
 		height: auto;
+		padding: var(--header-horizontal-padding) 0;
 
 		transform: translate3d(0, 0, 0);
 		-webkit-transform: translate3d(0, 0, 0);
@@ -842,10 +843,6 @@ body:not([data-on-intro]) #intro {
 		scrollbar-width: none;
 
 		width: var(--body-width);
-	}
-
-	.project-content {
-		padding: var(--header-horizontal-padding) 0;
 	}
 
 	.project::-webkit-scrollbar {
