@@ -69,8 +69,6 @@ a {
 	display: none !important;
 }
 
-/* Langs */
-
 body[lang="fr"] [lang]:not([lang="fr"]),
 body[lang="en"] [lang]:not([lang="en"]) {
 	display: none !important;
@@ -99,9 +97,9 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	pointer-events: none;
 }
 
-/*----------------------------------*/
-/*		Overlay, Header, Index		*/
-/*----------------------------------*/
+/*------------------*/
+/*		Overlay		*/
+/*------------------*/
 
 #overlay-container {
 	display: flex;
@@ -354,9 +352,9 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	border: var(--header-border-width) solid black;
 }
 
-/*--------------*/
-/*		Loader	*/
-/*--------------*/
+/*------------------*/
+/*		Loader		*/
+/*------------------*/
 
 #loader {
 	position: relative;
@@ -376,9 +374,9 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	flex-direction: column;
 }
 
-/*--------------*/
-/*		Layouts	*/
-/*--------------*/
+/*------------------*/
+/*		Layouts		*/
+/*------------------*/
 
 [data-layer~="overlay"] {
 	display: block;
@@ -451,9 +449,9 @@ body[data-index] #header-banner {
 	background-color: white;
 }
 
-/*--------------*/
-/*		Intro 	*/
-/*--------------*/
+/*------------------*/
+/*		Intro 		*/
+/*------------------*/
 
 body[data-before-intro] [data-layer~="loader"] {
 	display: block;
@@ -479,9 +477,9 @@ body:not([data-on-intro]) #intro {
 	display: none;
 }
 
-/*--------------------------*/
-/*		Projects layer		*/
-/*--------------------------*/
+/*----------------------*/
+/*		Projects		*/
+/*----------------------*/
 
 #projects-container {
 	height: 100%;
@@ -629,10 +627,9 @@ body:not([data-on-intro]) #intro {
 	font-size: 0.7em;
 }
 
-
-/*--------------------------*/
-/*		Galleries layer		*/
-/*--------------------------*/
+/*----------------------*/
+/*		Galleries		*/
+/*----------------------*/
 
 #galleries-container {
 	width: 100%;
@@ -739,12 +736,10 @@ body:not([data-on-intro]) #intro {
 }
 
 /*------------------*/
-/*		Intro		*/
+/*		Desktop		*/
 /*------------------*/
 
 @media screen and (min-width: 801px) {
-
-	.mobile {display: none !important;}
 
 	:root {
 		--subscroller-height: 0px;
@@ -772,6 +767,10 @@ body:not([data-on-intro]) #intro {
 		display: none;
 	}
 }
+
+/*------------------*/
+/*		Mobile		*/
+/*------------------*/
 
 @media screen and (max-width: 800px) {
 
@@ -831,6 +830,9 @@ body:not([data-on-intro]) #intro {
 	.project-content {
 		margin-top: 0;
 		height: auto;
+
+		transform: translate3d(0, 0, 0);
+		-webkit-transform: translate3d(0, 0, 0);
 	}
 
 	.project {
