@@ -52,6 +52,26 @@ class Router {
 }
 
 class GalleryItem {
+    /**
+     * @type {Gallery}
+     */
+    gallery;
+
+    /**
+     * @type {string}
+     */
+    img;
+
+    /**
+     * @type {string}
+     */
+    hash;
+
+    /**
+     * @type {string}
+     */
+    project;
+    
     constructor(gallery, img, hash, project) {
         this.gallery = gallery;
         this.img = img;
@@ -64,13 +84,13 @@ class GalleryItem {
             <div class="gallery-item-wrapper" data-hash="${this.hash}" style="--data-color: ${this.project.color}">
                 <a href="#${this.hash}">
                     ${(() => {
-                    let extension = this.img.substr(this.img.length - 3);
+                    const extension = this.img.substr(this.img.length - 3);
                     switch (extension) {
                         case "jpg":
                         case "png":
                         case "gif":
                             return /*html*/`<img class="gallery-item" src="${contentRoot}${this.gallery.name}/gallery/${this.img}" data-hash="${this.hash}"/>`;
-                        case "mov":
+                        case "webm":
                         case "mp4":
                             return /*html*/`
                             <video class="gallery-item" data-hash="${this.hash}" autoplay muted loop playsinline>
@@ -93,6 +113,11 @@ class GalleryItem {
 }
 
 class Gallery {
+    /**
+     * @type {HTMLElement}
+     */
+    galleryElement;
+
     /**
      * @type {HTMLElement}
      */
@@ -144,15 +169,47 @@ class Gallery {
         );
     }
 
-    setupSubscrollerSync() {
+    setup() {
+        this._setupSubscrollerSync();
+        this._setupInfiniteScrolling();
+        this._setupItemsCallbacks();
+    }
+
+    show() {
+        this.galleryElement.hidden = false;
+    }
+
+    hide() {
+        this.galleryElement.hidden = true;
+    }
+
+    enableScroller() {
+        this.scrollerElement.toggleAttribute("data-disabled", false);
+    }
+
+    disableScroller() {
+        this.scrollerElement.toggleAttribute("data-disabled", true);
+    }
+
+    setScrollerOffset() {
+        const firstItem = this.items_curr[0];
+        const middleItem = this.items_curr[Math.trunc(this.items_curr.length / 2)];
+        const firstItemWidth = parseFloat(window.getComputedStyle(firstItem.itemWrapperElement).getPropertyValue("width"));
+        firstItem.itemWrapperElement.scrollIntoView();
+        middleItem.subitemElement.scrollIntoView();
+        this.scrollerElement.scrollTop += firstItemWidth * (2 / 3);
+        this.subscrollerOffset = this.scrollerElement.scrollTop - this.subscrollerElement.scrollTop;
+    }
+
+    _setupSubscrollerSync() {
         let scrollInitiator = null;
         let lastScrollOveredGalleryItem = null;
 
         function updateOveredItem() {
             const scrollOveredGalleryItem = document.elementsFromPoint(mousePosition.x, mousePosition.y)
-                    .find(el => el.matches(".gallery-item-wrapper"));
+                    .find(el => el.classList.contains("gallery-item-wrapper"));
             if (scrollOveredGalleryItem) {
-                scrollOveredGalleryItem.setAttribute("data-overed", "");
+                scrollOveredGalleryItem.toggleAttribute("data-overed", true);
                 lastScrollOveredGalleryItem = scrollOveredGalleryItem;
             }
         }
@@ -168,7 +225,7 @@ class Gallery {
                         scrollInitiator = this.scrollerElement;
                         this.subscrollerElement.scrollTop = this.scrollerElement.scrollTop - this.subscrollerOffset;
                         if (lastScrollOveredGalleryItem !== null) {
-                            lastScrollOveredGalleryItem.removeAttribute("data-overed");
+                            lastScrollOveredGalleryItem.toggleAttribute("data-overed", false);
                         }
                         updateOveredItem();
                     });
@@ -192,7 +249,7 @@ class Gallery {
         });
     }
 
-    setupInfiniteScrolling() {
+    _setupInfiniteScrolling() {
         this.items_curr = Array.from(this.#items);
         this.items_prev = this.items_curr.map(item => item.clone());
         this.items_next = this.items_curr.map(item => item.clone());
@@ -275,7 +332,7 @@ class Gallery {
         });
     }
 
-    setupItemsCallbacks() {
+    _setupItemsCallbacks() {
         this.items.forEach((item) => {
             item.resizeObserver = new ResizeObserver((entries) => {
                 for (let entry of entries) {
@@ -290,7 +347,7 @@ class Gallery {
 
             item.itemWrapperElement.addEventListener("mouseover", () => {
                 if (!item.itemWrapperElement.hasAttribute("data-overed")) {
-                    item.itemWrapperElement.setAttribute("data-overed", "");
+                    item.itemWrapperElement.toggleAttribute("data-overed", true);
                 }
             });
             item.itemWrapperElement.addEventListener("mouseout", (event) => {
@@ -303,6 +360,16 @@ class Gallery {
 }
 
 class Project {
+    /**
+     * @type {Gallery}
+     */
+    gallery;
+
+    /**
+     * @type {HTMLElement}
+     */
+    projectElement;
+
     constructor(gallery, name, hash, imgs, lang) {
         this.gallery = gallery;
         this.name = name;
@@ -312,10 +379,13 @@ class Project {
 
         this.projectElement = domParser.parseFromString(/*html*/`
             <main id="${this.name}" class="project">
+                <section class="project-anchor">
+                    <a href="#${this.gallery.hash}" class="gallery-anchor"></a>
+                </section>
                 <section class="project-details">
                     ${(() => {
-                        let createLangDetails = (lang) => {
-                            let langContent = this.lang[lang];
+                        const createLangDetails = (lang) => {
+                            const langContent = this.lang[lang];
                             return /*html*/`
                                 <div lang="${lang}">
                                     <h1>${langContent.title || ""}</h1>
@@ -325,22 +395,21 @@ class Project {
                         };
                         return (typeof this.lang === "object") ? Object.keys(this.lang).reduce((acc, lang) => acc + createLangDetails(lang), "") : "";
                     })()}
-                    <a href="#${this.gallery.hash}" class="gallery-anchor"></a>
                 </section>
                 <div class="project-content">
                     ${(() => {
-                        let createImgElement = (img) => {
-                            let extension = img.substr(img.length - 3);
+                        const createImgElement = (img) => {
+                            const extension = img.substr(img.length - 3);
                             switch (extension) {
                                 case "jpg":
                                 case "png":
                                 case "gif":
                                     return /*html*/`<img class="project-item" src="${contentRoot}${this.gallery.name}/projects/${this.name}/${img}"/>`;
-                                case "mov":
+                                case "webm":
                                 case "mp4":
                                     return /*html*/`
-                                    <video class="project-item" controls>
-                                        <source type="video/${extension == "mp4" ? "mp4" : "quicktime"}" src="${contentRoot}${this.gallery.name}/projects/${this.name}/${img}"></source>
+                                    <video class="project-item" autoplay muted loop playsinline controls>
+                                        <source type="video/${extension}" src="${contentRoot}${this.gallery.name}/projects/${this.name}/${img}"></source>
                                     </video>`;
                             }
                         }
@@ -354,7 +423,28 @@ class Project {
         this.imgsElements = this.projectElement.querySelectorAll("img, video");
     }
 
-    setupImgsCallbacks() {
+    setup() {
+        this._setupImgsCallbacks();
+    }
+
+    show() {
+        this.projectElement.hidden = false;
+    }
+
+    hide() {
+        this.projectElement.hidden = true;
+    }
+
+    setAway() {
+        this.projectElement.toggleAttribute("data-away", true);
+    }
+
+    unsetAway() {
+        this.projectElement.scrollTop = 0;
+        this.projectElement.toggleAttribute("data-away", false);
+    }
+
+    _setupImgsCallbacks() {
         const imgsResizeObserver = new ResizeObserver((entries) => {
             for (let entry of entries) {
                 const clientRect = entry.target.getBoundingClientRect();

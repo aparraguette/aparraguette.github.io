@@ -12,6 +12,9 @@ const headerBannerScrollLeftBtn = document.getElementById("header-banner-scroll-
 const headerBannerScrollRightBtn = document.getElementById("header-banner-scroll-btn-right");
 const headerContact = document.getElementById("header-contact");
 
+const loader = document.getElementById("loader");
+const intro = document.getElementById("intro");
+
 const menuContainer = document.getElementById("menu-container");
 const projectsContainer = document.getElementById("projects-container");
 const galleriesContainer = document.getElementById("galleries-container");
@@ -29,7 +32,13 @@ const contentItems = ["identites", "illustrations", "photographies", "prints"];
 const mousePosition = {x: 0, y: 0};
 
 const content = {
+    /**
+     * @type {Array<Gallery>}
+     */
     galleries: [],
+    /**
+     * @type {Array<Project>}
+     */
     projects: []
 };
 
@@ -46,20 +55,15 @@ document.addEventListener("touchmove", (event) => {
 
 [headerTitle, menuContainer].forEach((menuAreaElement) => {
     menuAreaElement.addEventListener("mouseenter", () => {
-        document.body.setAttribute("data-with-menu", "");
+        document.body.toggleAttribute("data-with-menu", true);
     });
     menuAreaElement.addEventListener("mouseleave", () => {
-        document.body.removeAttribute("data-with-menu");
+        document.body.toggleAttribute("data-with-menu", false);
     });
 });
 
 function handleHashChange(oldHash, newHash) {
-    if (!newHash) {
-        document.body.setAttribute("data-index", "");
-    }
-    else {
-        document.body.removeAttribute("data-index");
-    }
+    document.body.toggleAttribute("data-index", !newHash);
     router.handleRouteChange(newHash, oldHash);
 };
 
@@ -89,6 +93,46 @@ function documentImgsLoadPromises() {
         )
     });
 };
+
+function setLayout(layout) {
+    document.body.setAttribute("data-layout", layout);
+}
+
+function startLoader() {
+    document.body.toggleAttribute("data-on-loading", true);
+    loader.currentTime = 0;
+    loader.play();
+}
+
+function stopLoader() {
+    document.body.toggleAttribute("data-on-loading", false);
+    loader.pause();
+}
+
+function startIntro() {
+    document.body.toggleAttribute("data-on-intro", true);
+    intro.currentTime = 0;
+    intro.play();
+}
+
+function stopIntro() {
+    intro.pause();
+    document.body.toggleAttribute("data-on-intro", false);
+}
+
+function startSlideshow() {
+    Array.from(slideshow.querySelectorAll("video")).forEach((video) => {
+        intro.currentTime = 0;
+        video.play();
+    });
+}
+
+function stopSlideshow() {
+    Array.from(slideshow.querySelectorAll("video")).forEach((video) => {
+        video.pause();
+    });
+}
+
 
 function loadContentPromise() {
     return new Promise((resolve) => {
@@ -129,45 +173,38 @@ function loadContentPromise() {
             content.galleries.forEach((gallery) => {
                 router.registerRouteHandlers(new RegExp(`^${gallery.hash}$`), {
                     onEnter: (fromRoute) => {
-                        document.body.setAttribute("data-layout", "gallery");
+                        setLayout("gallery");
 
                         if (!galleriesContainer.contains(gallery.galleryElement)) {
-                            document.body.setAttribute("data-on-loading", "");
-                            gallery.galleryElement.hidden = true;
+                            startLoader();
+                            gallery.hide();
                             galleriesContainer.append(gallery.galleryElement);
-                            gallery.setupSubscrollerSync();
-                            gallery.setupInfiniteScrolling();
-                            gallery.setupItemsCallbacks();
+                            gallery.setup();
                         }
                         
-                        gallery.scrollerElement.setAttribute("data-disabled", "");
-
+                        gallery.disableScroller();
+                        const preLoadTime = new Date().getTime();
                         Promise.all(documentImgsLoadPromises()).then(() => {
-                            gallery.galleryElement.hidden = false;
-                            setTimeout(() => {
-                                let routingFromGalleryProject = gallery.projects.find((project) => project.hash == fromRoute);
-                                if (!routingFromGalleryProject) {
-                                    const firstItem = gallery.items_curr[0];
-                                    const middleItem = gallery.items_curr[Math.trunc(gallery.items_curr.length / 2)];
-                                    if (firstItem && middleItem) {
-                                        const firstItemWidth = parseFloat(window.getComputedStyle(firstItem.itemWrapperElement).getPropertyValue("width"));
-                                        firstItem.itemWrapperElement.scrollIntoView();
-                                        middleItem.subitemElement.scrollIntoView();
-                                        gallery.scrollerElement.scrollTop += firstItemWidth * (2 / 3);
-                                        gallery.subscrollerOffset = gallery.scrollerElement.scrollTop - gallery.subscrollerElement.scrollTop;
-                                    }
-                                }
+                            gallery.show();
+                            const routingFromGalleryProject = gallery.projects.find((project) => project.hash == fromRoute);
+                            if (!routingFromGalleryProject) {
+                                gallery.setScrollerOffset();
+                                const postLoadingTime = new Date().getTime();
+                                const remainingLoadingTime = Math.max(0, 4_000 - (postLoadingTime - preLoadTime));
                                 setTimeout(() => {
-                                    gallery.scrollerElement.removeAttribute("data-disabled");
-                                    document.body.removeAttribute("data-on-loading");
-                                }, 200);
-                            }, 100);
+                                    gallery.enableScroller();
+                                    stopLoader();
+                                }, remainingLoadingTime);
+                            }
+                            else {
+                                gallery.enableScroller();
+                            }
                         });
                     },
                     onLeave: (toRoute) => {
-                        let routingToGalleryProject = gallery.projects.find((project) => project.hash == toRoute);
+                        const routingToGalleryProject = gallery.projects.find((project) => project.hash == toRoute);
                         if (!routingToGalleryProject) {
-                            gallery.galleryElement.hidden = true;
+                            gallery.hide();
                         }
                     }
                 });
@@ -176,46 +213,37 @@ function loadContentPromise() {
             content.projects.forEach((project) => {
                 router.registerRouteHandlers(new RegExp(`^${project.hash}$`), {
                     onEnter: (fromRoute) => {
-                        document.body.setAttribute("data-layout", "project");
+                        setLayout("project");
                         
                         if (!galleriesContainer.contains(project.gallery.galleryElement)) {
-                            document.body.setAttribute("data-on-loading", "");
-                            project.gallery.galleryElement.hidden = true;
+                            project.gallery.hide();
                             galleriesContainer.append(project.gallery.galleryElement);
-                            project.gallery.setupSubscrollerSync();
-                            project.gallery.setupInfiniteScrolling();
-                            project.gallery.setupItemsCallbacks();
+                            project.gallery.setup();
                         }
 
                         if (!projectsContainer.contains(project.projectElement)) {
-                            document.body.setAttribute("data-on-loading", "");
-                            project.projectElement.hidden = true;
+                            project.hide();
                             projectsContainer.append(project.projectElement);
-                            project.setupImgsCallbacks();
+                            project.setup();
                         }
 
-                        project.projectElement.hidden = false;
-                        let routingFromGallery = (fromRoute == project.gallery.hash);
+                        project.show();
+                        const routingFromGallery = (fromRoute == project.gallery.hash);
                         if (routingFromGallery) {
-                            project.projectElement.setAttribute("data-away", "");
+                            project.setAway();
                         }
-                        
-                        Promise.all(documentImgsLoadPromises()).then(() => {
-                            project.projectElement.scrollTop = 0;
-                            document.body.removeAttribute("data-on-loading");
-                            project.projectElement.removeAttribute("data-away");
-                        });
+                        project.unsetAway();
                     },
                     onLeave: (toRoute) => {
-                        let toParentGallery = toRoute == project.gallery.hash;
-                        let toSiblingProject = project.gallery.projects.find((project) => project.hash == toRoute);
+                        const toParentGallery = toRoute == project.gallery.hash;
+                        const toSiblingProject = project.gallery.projects.find((project) => project.hash == toRoute);
                         if (toParentGallery) {
-                            project.projectElement.setAttribute("data-away", "");
+                            project.setAway();
                         }
                         else {
-                            project.projectElement.hidden = true;
+                            project.hide();
                             if (!toSiblingProject) {
-                                project.gallery.galleryElement.hidden = true;
+                                project.gallery.hide();
                             }
                         }
                     }
@@ -224,14 +252,21 @@ function loadContentPromise() {
 
             router.registerRouteHandlers(new RegExp(`^$`), {
                 onEnter: () => {
-                    document.body.setAttribute("data-layout", "index");
+                    setLayout("index");
+                    startSlideshow();
+                },
+                onLeave: () => {
+                    stopSlideshow();
                 }
             });
 
             router.registerRouteHandlers(new RegExp(`^Contact$`), {
                 onEnter: () => {
-                    document.body.setAttribute("data-layout", "contact");
-                    document.body.scrollTop = 0;
+                    setLayout("contact");
+                    startSlideshow();
+                },
+                onLeave: () => {
+                    stopSlideshow();
                 }
             });
             
@@ -241,16 +276,10 @@ function loadContentPromise() {
 };
 
 headerContact.addEventListener("click", () => {
-    if (headerContact.getAttribute("data-closed") !== null) {
-        headerContact.removeAttribute("data-closed");
-        headerBannerContent.setAttribute("data-invisible", "");
-        headerBannerScrollBtns.hidden = true;
-    }
-    else {
-        headerContact.setAttribute("data-closed", "");
-        headerBannerContent.removeAttribute("data-invisible");
-        headerBannerScrollBtns.hidden = false;
-    }
+    const isClosed = headerContact.hasAttribute("data-closed");
+    headerContact.toggleAttribute("data-closed", !isClosed);
+    headerBannerContent.toggleAttribute("data-invisible", isClosed);
+    headerBannerScrollBtns.hidden = isClosed;
 });
 
 langBtn.addEventListener("click", () => {
@@ -275,10 +304,10 @@ window.addEventListener("load", () => {
             handleLangParam(searchParams.get("lang"));
             document.body.removeAttribute("data-before-intro");
             if (!hash) {
-                document.body.setAttribute("data-on-intro", "");
+                startIntro();
                 setTimeout(() => {
-                    document.body.removeAttribute("data-on-intro");
-                    Array.from(slideshow.querySelectorAll("video")).forEach((video) => video.play());
+                    stopIntro();
+                    startSlideshow();
                 }, introTransitionDurationMs);
             }
         });
@@ -288,8 +317,8 @@ window.addEventListener("load", () => {
 const headerObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
         const clientRect = entry.target.getBoundingClientRect();
-        document.body.style.setProperty("--header-height", `${clientRect.height}px`);
-        document.body.style.setProperty("--header-width",  `${clientRect.width}px`);
+        document.documentElement.style.setProperty("--header-height", `${clientRect.height}px`);
+        document.documentElement.style.setProperty("--header-width",  `${clientRect.width}px`);
     }
 });
 headerObserver.observe(header);
@@ -297,8 +326,8 @@ headerObserver.observe(header);
 const bodyObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
         const clientRect = entry.target.getBoundingClientRect();
-        document.body.style.setProperty("--body-width",  `${clientRect.width}px`);
-        document.body.style.setProperty("--body-height",  `${clientRect.height}px`);
+        document.documentElement.style.setProperty("--body-width",  `${clientRect.width}px`);
+        document.documentElement.style.setProperty("--body-height",  `${clientRect.height}px`);
     }
 });
 bodyObserver.observe(document.body);
@@ -329,7 +358,7 @@ headerBannerObserver.observe(headerBanner);
 const headerContactObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
         const clientRect = entry.target.getBoundingClientRect();
-        document.body.style.setProperty("--header-contact-width",  `${clientRect.width}px`);
+        document.documentElement.style.setProperty("--header-contact-width",  `${clientRect.width}px`);
     }
 });
 headerContactObserver.observe(headerContact);
@@ -337,7 +366,7 @@ headerContactObserver.observe(headerContact);
 const headerTitleObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
         const clientRect = entry.target.getBoundingClientRect();
-        document.body.style.setProperty("--header-title-width",  `${clientRect.width}px`);
+        document.documentElement.style.setProperty("--header-title-width",  `${clientRect.width}px`);
     }
 });
 headerTitleObserver.observe(headerTitle);

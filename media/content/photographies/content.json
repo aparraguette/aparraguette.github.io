@@ -74,7 +74,7 @@
             "name": "bellone",
             "hash": "Bellone",
             "color": "#0d1e4f",
-            "imgs": ["1.bellone.png", "2.bellone.jpg", "3.bellone.jpg", "4.bellone.jpg", "5.bellone.jpg", "6.bellone.jpg", "7.bellone.jpg"]
+            "imgs": ["1.bellone.jpg", "2.bellone.jpg", "3.bellone.jpg", "4.bellone.jpg", "5.bellone.jpg", "6.bellone.jpg", "7.bellone.jpg"]
         },
         {
             "name": "cecile-au-sabre",
@@ -122,19 +122,19 @@
             "name": "the-party",
             "hash": "The_Party",
             "color": "#313e8c",
-            "imgs": ["1.the_party.jpg", "2.the_party.jpg", "3.the_party.jpg", "4.the_party.png", "5.the_party.jpg", "6.the_party.jpg"]
+            "imgs": ["1.the_party.jpg", "2.the_party.jpg", "3.the_party.jpg", "4.the_party.jpg", "5.the_party.jpg", "6.the_party.jpg"]
         },
         {
             "name": "toisons",
             "hash": "Toisons",
             "color": "#362814",
-            "imgs": ["1.toisons.png", "2.toisons.jpg", "3.toisons.jpg", "4.toisons.jpg", "5.toisons.jpg", "6.toisons.jpg", "7.toisons.jpg"]
+            "imgs": ["1.toisons.jpg", "2.toisons.jpg", "3.toisons.jpg", "4.toisons.jpg", "5.toisons.jpg", "6.toisons.jpg", "7.toisons.jpg"]
         },
         {
             "name": "totems",
             "hash": "Totems",
             "color": "#eee0d7",
-            "imgs": ["1.totem.png", "2.totem.jpg", "3.totem.jpg", "4.totem.jpg"]
+            "imgs": ["1.totem.jpg", "2.totem.jpg", "3.totem.jpg", "4.totem.jpg"]
         }
     ]
 }
