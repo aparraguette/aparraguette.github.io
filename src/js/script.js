@@ -101,7 +101,7 @@ function setLayout(layout) {
 
 function startLoader() {
     document.body.toggleAttribute("data-on-loading", true);
-    loader.volumne = 0;
+    intro.currentTime = 0;
     loader.play();
 }
 
