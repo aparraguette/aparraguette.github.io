@@ -1,12 +1,32 @@
 const domParser = new DOMParser();
 
 class Slideshow {
+    /**
+     * @type {HTMLElement}
+     */
     domElement;
+    /**
+     * @type {number}
+     */
     currentIndex;
+    /**
+     * @type {number}
+     */
     delay;
+    /**
+     * @type {number}
+     */
     _interval;
+    /**
+     * @type {Array<HTMLVideoElement>}
+     */
     _videos;
 
+    /**
+     * 
+     * @param {HTMLElement} domElement 
+     * @param {number} delay 
+     */
     constructor(domElement, delay) {
         this.domElement = domElement;
         this.slideshowInterval = -1;
@@ -47,7 +67,6 @@ class Slideshow {
 }
 class Router {
     /**
-     * Route handlers currently registered.
      * @type {Map<string, {
      *  onEnter: (fromRoute) => void,
      *  onLeave: (toRoute) => void
