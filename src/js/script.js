@@ -23,13 +23,17 @@ const projectAwayDurationMs = parseFloat(window.getComputedStyle(document.docume
 const introStepTransitionDurationMs = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--intro-step-transition-duration-ms"));
 const introStep0TransitionDelayMs = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--intro-step0-transition-delay-ms"));
 const introStep1TransitionDelayMs = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--intro-step1-transition-delay-ms"));
-const introTransitionDurationMs = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--intro-transition-duration-ms"));
+const introTotalTransitionDurationMs = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--intro-total-transition-duration-ms"));
 
 const langs = ["fr", "en"];
 const defaultLang = langs[0];
 const contentRoot = "media/content/";
 const contentItems = ["identites", "illustrations", "photographies", "prints"];
-const mousePosition = {x: 0, y: 0};
+
+const mousePosition = {
+    x: 0,
+    y: 0
+};
 
 const content = {
     /**
@@ -100,7 +104,7 @@ function setLayout(layout) {
 
 function startLoader() {
     document.body.toggleAttribute("data-on-loading", true);
-    loader.currentTime = 0;
+    loader.volumne = 0;
     loader.play();
 }
 
@@ -116,13 +120,13 @@ function startIntro() {
 }
 
 function stopIntro() {
-    intro.pause();
     document.body.toggleAttribute("data-on-intro", false);
+    intro.pause();
 }
 
 function startSlideshow() {
     Array.from(slideshow.querySelectorAll("video")).forEach((video) => {
-        intro.currentTime = 0;
+        video.currentTime = 0;
         video.play();
     });
 }
@@ -132,7 +136,6 @@ function stopSlideshow() {
         video.pause();
     });
 }
-
 
 function loadContentPromise() {
     return new Promise((resolve) => {
@@ -182,7 +185,6 @@ function loadContentPromise() {
                             gallery.setup();
                         }
                         
-                        gallery.disableScroller();
                         const preLoadTime = new Date().getTime();
                         Promise.all(documentImgsLoadPromises()).then(() => {
                             gallery.show();
@@ -308,11 +310,15 @@ window.addEventListener("load", () => {
                 setTimeout(() => {
                     stopIntro();
                     startSlideshow();
-                }, introTransitionDurationMs);
+                }, introTotalTransitionDurationMs);
             }
         });
     });
 });
+
+/*----------------------*/
+/*		Observers		*/
+/*----------------------*/
 
 const headerObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
@@ -326,8 +332,8 @@ headerObserver.observe(header);
 const bodyObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
         const clientRect = entry.target.getBoundingClientRect();
-        document.documentElement.style.setProperty("--body-width",  `${clientRect.width}px`);
-        document.documentElement.style.setProperty("--body-height",  `${clientRect.height}px`);
+        document.documentElement.style.setProperty("--body-width", `${clientRect.width}px`);
+        document.documentElement.style.setProperty("--body-height", `${clientRect.height}px`);
     }
 });
 bodyObserver.observe(document.body);
@@ -358,7 +364,7 @@ headerBannerObserver.observe(headerBanner);
 const headerContactObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
         const clientRect = entry.target.getBoundingClientRect();
-        document.documentElement.style.setProperty("--header-contact-width",  `${clientRect.width}px`);
+        document.documentElement.style.setProperty("--header-contact-width", `${clientRect.width}px`);
     }
 });
 headerContactObserver.observe(headerContact);
@@ -366,7 +372,7 @@ headerContactObserver.observe(headerContact);
 const headerTitleObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
         const clientRect = entry.target.getBoundingClientRect();
-        document.documentElement.style.setProperty("--header-title-width",  `${clientRect.width}px`);
+        document.documentElement.style.setProperty("--header-title-width", `${clientRect.width}px`);
     }
 });
 headerTitleObserver.observe(headerTitle);

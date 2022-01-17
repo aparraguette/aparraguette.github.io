@@ -4,7 +4,7 @@
 
 @font-face {	
 	font-family: "Helvetica";
-	src: url("../../media/font/Helvetica-Light.ttf") format("truetype");
+	src: url("/media/font/Helvetica-Light.ttf") format("truetype");
 }
 
 /*----------------------*/
@@ -24,10 +24,10 @@
 
 	--project-away-duration-ms: 3000;
 
+	--intro-step-transition-duration-ms: 1500;
 	--intro-step0-transition-delay-ms: 2500;
 	--intro-step1-transition-delay-ms: 3800;
-	--intro-step-transition-duration-ms: 1500;
-	--intro-transition-duration-ms: 5500;
+	--intro-total-transition-duration-ms: 5500;
 }
 
 /*------------------*/
@@ -63,7 +63,7 @@ a {
 
 * {
 	pointer-events: auto;
-	cursor: url("../../media/nav/pointer_32_normal.png"), pointer !important;
+	cursor: url("/media/nav/pointer_32_normal.png"), pointer !important;
 }
 
 *[hidden] {
@@ -302,13 +302,13 @@ body[lang="en"] [lang]:not([lang="en"]) {
 }
 
 .instagram-btn {
-	background-image: url("../../media/icons/instagram.png");
+	background-image: url("/media/icons/instagram.png");
 }
 
 .linkedin-btn {
 	margin-left: var(--header-horizontal-padding);
 	margin-right: var(--header-horizontal-padding);
-	background-image: url("../../media/icons/linkedin.png");
+	background-image: url("/media/icons/linkedin.png");
 }
 
 #intro {
@@ -671,8 +671,10 @@ body:not([data-on-intro]) #intro {
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	
-	transform: rotate(-180deg) translate3d(0, 0, 0);
-	-webkit-transform: rotate(-180deg) translate3d(0, 0, 0);
+	transform: rotate(360deg) translate3d(0, 0, 0);
+	-webkit-transform: rotate(360deg) translate3d(0, 0, 0);
+	/*transform: rotate(-180deg) translate3d(0, 0, 0);
+	-webkit-transform: rotate(-180deg) translate3d(0, 0, 0);*/
 }
 
 .gallery-subscroller::-webkit-scrollbar {
