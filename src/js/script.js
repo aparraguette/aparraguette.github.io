@@ -301,15 +301,16 @@ window.addEventListener("load", () => {
     const searchParams = new URLSearchParams(window.location.search || `?lang=${defaultLang}`);
 
     loadContentPromise().then(() => {
+        startLoader()
         Promise.all([documentImgsLoadPromises()]).then(() => {
             handleHashChange(void 0, hash);
             handleLangParam(searchParams.get("lang"));
             document.body.removeAttribute("data-before-intro");
             if (!hash) {
-                stopLoader();
                 startIntro();
                 setTimeout(() => {
                     stopIntro();
+                    stopLoader();
                     startSlideshow();
                 }, introTotalTransitionDurationMs);
             }
