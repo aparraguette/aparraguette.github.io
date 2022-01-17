@@ -673,8 +673,6 @@ body:not([data-on-intro]) #intro {
 	
 	transform: rotate(360deg) translate3d(0, 0, 0);
 	-webkit-transform: rotate(360deg) translate3d(0, 0, 0);
-	/*transform: rotate(-180deg) translate3d(0, 0, 0);
-	-webkit-transform: rotate(-180deg) translate3d(0, 0, 0);*/
 }
 
 .gallery-subscroller::-webkit-scrollbar {
@@ -833,9 +831,5 @@ body:not([data-on-intro]) #intro {
 		width: var(--body-width);
 		padding: 0 var(--header-horizontal-padding);
 		height: auto;
-	}
-
-	.project-bottom {
-		display: none;
 	}
 }

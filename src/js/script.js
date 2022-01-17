@@ -306,6 +306,7 @@ window.addEventListener("load", () => {
             handleLangParam(searchParams.get("lang"));
             document.body.removeAttribute("data-before-intro");
             if (!hash) {
+                stopLoader();
                 startIntro();
                 setTimeout(() => {
                     stopIntro();
