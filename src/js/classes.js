@@ -1,5 +1,50 @@
 const domParser = new DOMParser();
 
+class Slideshow {
+    domElement;
+    currentIndex;
+    delay;
+    _interval;
+    _videos;
+
+    constructor(domElement, delay) {
+        this.domElement = domElement;
+        this.slideshowInterval = -1;
+        this.slideshowIndex = -1;
+        this.delay = delay;
+        this._interval = -1;
+        this._videos = Array.from(domElement.querySelectorAll("video"));
+    }
+
+    start() {
+        if (this._interval !== -1) {
+            clearInterval(this._interval);
+        }
+        this._interval = setInterval(() => {
+            this.slideshowIndex = (this.slideshowIndex + 1) % this._videos.length;
+            this._videos.forEach((video, index) => {
+                if (index === this.slideshowIndex) {
+                    video.hidden = false;
+                    video.currentTime = 0;
+                    video.play();
+                }
+                else {
+                    video.pause();
+                    video.hidden = true;
+                }
+            });
+        }, this.delay);
+    }
+
+    stop() {
+        this._videos.forEach((video) => {
+            video.pause();
+            video.hidden = true;
+        });
+        clearInterval(this._interval);
+        this._interval = -1;
+    }
+}
 class Router {
     /**
      * Route handlers currently registered.

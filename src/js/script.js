@@ -1,8 +1,5 @@
-const router = new Router();
-
 const langBtn = document.getElementById("lang-btn");
-
-const slideshow = document.getElementById("slideshow");
+const slideshowElement = document.getElementById("slideshow");
 const header = document.getElementById("header");
 const headerTitle = document.getElementById("header-title");
 const headerBanner = document.getElementById("header-banner");
@@ -11,10 +8,8 @@ const headerBannerScrollBtns = document.getElementById("header-banner-scroll-btn
 const headerBannerScrollLeftBtn = document.getElementById("header-banner-scroll-btn-left");
 const headerBannerScrollRightBtn = document.getElementById("header-banner-scroll-btn-right");
 const headerContact = document.getElementById("header-contact");
-
 const loader = document.getElementById("loader");
 const intro = document.getElementById("intro");
-
 const menuContainer = document.getElementById("menu-container");
 const projectsContainer = document.getElementById("projects-container");
 const galleriesContainer = document.getElementById("galleries-container");
@@ -25,8 +20,10 @@ const introStep0TransitionDelayMs = parseFloat(window.getComputedStyle(document.
 const introStep1TransitionDelayMs = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--intro-step1-transition-delay-ms"));
 const introTotalTransitionDurationMs = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--intro-total-transition-duration-ms"));
 
+const router = new Router();
+const slideshow = new Slideshow(slideshowElement, 2_000);
+
 const langs = ["fr", "en"];
-const defaultLang = langs[0];
 const contentRoot = "media/content/";
 const contentItems = ["identites", "illustrations", "photographies", "prints"];
 
@@ -122,19 +119,6 @@ function startIntro() {
 function stopIntro() {
     document.body.toggleAttribute("data-on-intro", false);
     intro.pause();
-}
-
-function startSlideshow() {
-    Array.from(slideshow.querySelectorAll("video")).forEach((video) => {
-        video.currentTime = 0;
-        video.play();
-    });
-}
-
-function stopSlideshow() {
-    Array.from(slideshow.querySelectorAll("video")).forEach((video) => {
-        video.pause();
-    });
 }
 
 function loadContentPromise() {
@@ -255,20 +239,20 @@ function loadContentPromise() {
             router.registerRouteHandlers(new RegExp(`^$`), {
                 onEnter: () => {
                     setLayout("index");
-                    startSlideshow();
+                    slideshow.start();
                 },
                 onLeave: () => {
-                    stopSlideshow();
+                    slideshow.stop();
                 }
             });
 
             router.registerRouteHandlers(new RegExp(`^Contact$`), {
                 onEnter: () => {
                     setLayout("contact");
-                    startSlideshow();
+                    slideshow.start();
                 },
                 onLeave: () => {
-                    stopSlideshow();
+                    slideshow.stop();
                 }
             });
             
@@ -298,10 +282,10 @@ window.addEventListener("hashchange", (event) => {
 
 window.addEventListener("load", () => {
     const hash = window.location.hash.substring(window.location.hash.indexOf("#") + 1);
-    const searchParams = new URLSearchParams(window.location.search || `?lang=${defaultLang}`);
+    const searchParams = new URLSearchParams(window.location.search || `?lang=${langs[0]}`);
 
+    stopLoader();
     loadContentPromise().then(() => {
-        startLoader()
         Promise.all([documentImgsLoadPromises()]).then(() => {
             handleHashChange(void 0, hash);
             handleLangParam(searchParams.get("lang"));
@@ -310,8 +294,7 @@ window.addEventListener("load", () => {
                 startIntro();
                 setTimeout(() => {
                     stopIntro();
-                    stopLoader();
-                    startSlideshow();
+                    slideshow.start();
                 }, introTotalTransitionDurationMs);
             }
         });
