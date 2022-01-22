@@ -291,7 +291,6 @@ window.addEventListener("hashchange", (event) => {
 window.addEventListener("load", () => {
     const hash = window.location.hash.substring(window.location.hash.indexOf("#") + 1);
     const searchParams = new URLSearchParams(window.location.search || `?lang=${langs[0]}`);
-    startLoader();
     loadContentPromise().then(() => {
         Promise.all([documentImgsLoadPromises()]).then(() => {
             router.handleRouteChange(hash, void 0);
