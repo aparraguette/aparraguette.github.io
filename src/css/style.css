@@ -404,9 +404,13 @@ body[data-on-loading] [data-layer~="loader"] {
 	display: block;
 }
 
+body[data-layout="index"][data-intro] #header,
+body[data-layout="index"][data-intro] #nav {
+	will-change: transform;
+}
+
 body[data-layout="index"] #header,
 body[data-layout="index"] #nav {
-	will-change: transform;
 	transition-property: transform;
 	transition-duration: calc(var(--intro-step-transition-duration-ms) * 1ms);
 }
@@ -477,8 +481,8 @@ body:not([data-on-intro]) #intro {
 }
 
 .project[data-away] {
-	transform: translate3d(0, 0, 0) translateX(calc(100% + var(--header-border-width)));
-	-webkit-transform: translate3d(0, 0, 0) translateX(calc(100% + var(--header-border-width)));
+	transform: translateX(calc(100% + var(--header-border-width)));
+	-webkit-transform: translateX(calc(100% + var(--header-border-width)));
 }
 
 .project-content {
@@ -486,8 +490,7 @@ body:not([data-on-intro]) #intro {
 	flex-direction: column;
 	flex: auto;
 
-	transform: translate3d(0, 0, 0);
-	-webkit-transform: translate3d(0, 0, 0);
+	will-change: scroll-position;
 	
 	-ms-overflow-style: none;
 	scrollbar-width: none;
@@ -627,6 +630,8 @@ body:not([data-on-intro]) #intro {
 	flex-direction: column;
 	align-items: center;
 	justify-content: start;
+
+	will-change: scroll-position;
 	
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -635,9 +640,6 @@ body:not([data-on-intro]) #intro {
 
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-	
-	transform: translate3d(0, 0, 0);
-	-webkit-transform: translate3d(0, 0, 0);
 }
 
 .gallery-subscroller {
@@ -649,6 +651,8 @@ body:not([data-on-intro]) #intro {
 	
 	overflow-x: hidden;
 	overflow-y: auto;
+
+	will-change: scroll-position;
 
 	-ms-overflow-style: none;
 	scrollbar-width: none;
