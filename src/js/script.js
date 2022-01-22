@@ -63,12 +63,11 @@ document.addEventListener("touchmove", (event) => {
     });
 });
 
-function handleHashChange(oldHash, newHash) {
-    document.body.toggleAttribute("data-index", !newHash);
-    router.handleRouteChange(newHash, oldHash);
-};
+function isMobile() {
+    return window.innerWidth <= 800;
+}
 
-function handleLangParam(lang) {
+function setLang(lang) {
     if (langs.includes(lang)) {
         const nextLang = langs[(langs.indexOf(lang) + 1) % langs.length];
         langBtn.innerText = nextLang;
@@ -101,7 +100,7 @@ function setLayout(layout) {
 
 function startLoader() {
     document.body.toggleAttribute("data-on-loading", true);
-    intro.currentTime = 0;
+    loader.currentTime = 0;
     loader.play();
 }
 
@@ -111,6 +110,7 @@ function stopLoader() {
 }
 
 function startIntro() {
+    document.body.toggleAttribute("data-before-intro", false);
     document.body.toggleAttribute("data-on-intro", true);
     intro.currentTime = 0;
     intro.play();
@@ -239,20 +239,28 @@ function loadContentPromise() {
             router.registerRouteHandlers(new RegExp(`^$`), {
                 onEnter: () => {
                     setLayout("index");
-                    slideshow.start();
+                    if (!isMobile()) {
+                        slideshow.start();
+                    }
                 },
                 onLeave: () => {
-                    slideshow.stop();
+                    if (!isMobile()) {
+                        slideshow.stop();
+                    }
                 }
             });
 
             router.registerRouteHandlers(new RegExp(`^Contact$`), {
                 onEnter: () => {
                     setLayout("contact");
-                    slideshow.start();
+                    if (!isMobile()) {
+                        slideshow.start();
+                    }
                 },
                 onLeave: () => {
-                    slideshow.stop();
+                    if (!isMobile()) {
+                        slideshow.stop();
+                    }
                 }
             });
             
@@ -277,24 +285,30 @@ langBtn.addEventListener("click", () => {
 window.addEventListener("hashchange", (event) => {
     const newURL = event.newURL.substring(event.newURL.indexOf("#") + 1);
     const oldURL = event.oldURL.substring(event.oldURL.indexOf("#") + 1);
-    handleHashChange(oldURL, newURL);
+    router.handleRouteChange(newURL, oldURL);
 });
 
 window.addEventListener("load", () => {
     const hash = window.location.hash.substring(window.location.hash.indexOf("#") + 1);
     const searchParams = new URLSearchParams(window.location.search || `?lang=${langs[0]}`);
-
-    stopLoader();
+    startLoader();
     loadContentPromise().then(() => {
         Promise.all([documentImgsLoadPromises()]).then(() => {
-            handleHashChange(void 0, hash);
-            handleLangParam(searchParams.get("lang"));
-            document.body.removeAttribute("data-before-intro");
+            router.handleRouteChange(hash, void 0);
+            setLang(searchParams.get("lang"));
+            if (!isMobile()) {
+                stopLoader();
+            }
             if (!hash) {
                 startIntro();
                 setTimeout(() => {
                     stopIntro();
-                    slideshow.start();
+                    if (!isMobile()) {
+                        slideshow.start();
+                    }
+                    else {
+                        stopLoader();
+                    }
                 }, introTotalTransitionDurationMs);
             }
         });

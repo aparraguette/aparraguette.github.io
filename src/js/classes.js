@@ -37,23 +37,26 @@ class Slideshow {
     }
 
     start() {
-        if (this._interval !== -1) {
-            clearInterval(this._interval);
-        }
+        this.stop();
         this._interval = setInterval(() => {
-            this.slideshowIndex = (this.slideshowIndex + 1) % this._videos.length;
-            this._videos.forEach((video, index) => {
-                if (index === this.slideshowIndex) {
-                    video.hidden = false;
-                    video.currentTime = 0;
-                    video.play();
-                }
-                else {
-                    video.pause();
-                    video.hidden = true;
-                }
-            });
+            this.tick();
         }, this.delay);
+        this.tick();
+    }
+
+    tick() {
+        this.slideshowIndex = (this.slideshowIndex + 1) % this._videos.length;
+        this._videos.forEach((video, index) => {
+            if (index === this.slideshowIndex) {
+                video.hidden = false;
+                video.currentTime = 0;
+                video.play();
+            }
+            else {
+                video.pause();
+                video.hidden = true;
+            }
+        });
     }
 
     stop() {
@@ -63,6 +66,7 @@ class Slideshow {
         });
         clearInterval(this._interval);
         this._interval = -1;
+        this.slideshowIndex = -1;
     }
 }
 class Router {
@@ -158,7 +162,7 @@ class GalleryItem {
                         case "mp4":
                             return /*html*/`
                             <video class="gallery-item" data-item-index=${thisIndex} autoplay muted loop playsinline>
-                                <source type="video/webm" src="${contentRoot}${this.gallery.name}/gallery/${filename}.webm"></source>
+                                <source type="video/webm" src="${contentRoot}${this.gallery.name}/gallery/${filename}.webm" codecs="vp8, vorbis"></source>
                                 <source type="video/mp4" src="${contentRoot}${this.gallery.name}/gallery/${filename}.mp4"></source>
                             </video>`;
                         default:
@@ -186,7 +190,7 @@ class GalleryItem {
         }
     });
 
-    setup() {
+    observe() {
         GalleryItem._resizeObserver.observe(this.itemElement);
     }
 
@@ -402,7 +406,7 @@ class Gallery {
 
     _setupItems() {
         this.items.forEach((item) => {
-            item.setup();
+            item.observe();
         });
         this.galleryElement.addEventListener("mouseover", (event) => {
             const target = event.target;
@@ -471,7 +475,7 @@ class Project {
                                 case "mp4":
                                     return /*html*/`
                                     <video class="project-item" autoplay muted loop playsinline controls>
-                                        <source type="video/webm" src="${contentRoot}${this.gallery.name}/projects/${this.name}/${filename}.webm"></source>
+                                        <source type="video/webm" src="${contentRoot}${this.gallery.name}/projects/${this.name}/${filename}.webm" codecs="vp8, vorbis"></source>
                                         <source type="video/mp4" src="${contentRoot}${this.gallery.name}/projects/${this.name}/${filename}.mp4"></source>
                                     </video>`;
                                 default:

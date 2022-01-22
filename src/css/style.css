@@ -18,7 +18,6 @@
 	--header-border-width: 3px;
 	--header-font-size: 1.76em;
 	--header-padding: var(--header-vertical-padding) var(--header-horizontal-padding);
-	--vertical-margin: 15px;
 	--horizontal-margin: 6px;
 	--subscroller-height: var(--header-height);
 
@@ -172,6 +171,7 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	font-size: var(--header-font-size);
 	background-color: white;
 	border-right: var(--header-border-width) solid black;
+	pointer-events: auto;
 }
 
 #nav li {
@@ -291,6 +291,7 @@ body[lang="en"] [lang]:not([lang="en"]) {
 	align-items: center;
 	justify-content: center;
 	text-align: center;
+	padding-bottom: 8px !important;
 }
 
 .instagram-btn,
@@ -390,7 +391,7 @@ body[data-layout="project"] .gallery {
 	pointer-events: none;
 }
 
-body[data-index] [data-layer~="menu"],
+body[data-layout="index"] [data-layer~="menu"],
 body[data-layout="contact"] [data-layer~="contact"],
 body[data-layout="gallery"] [data-layer~="galleries"],
 body[data-layout="gallery"] [data-layer~="projects"],
@@ -403,22 +404,22 @@ body[data-on-loading] [data-layer~="loader"] {
 	display: block;
 }
 
-body[data-index] #header,
-body[data-index] #nav {
+body[data-layout="index"] #header,
+body[data-layout="index"] #nav {
 	will-change: transform;
 	transition-property: transform;
 	transition-duration: calc(var(--intro-step-transition-duration-ms) * 1ms);
 }
 
-body[data-index] #header {
+body[data-layout="index"] #header {
 	transition-delay: calc(var(--intro-step0-transition-delay-ms) * 1ms);
 }
 
-body[data-index] #nav {
+body[data-layout="index"] #nav {
 	transition-delay: calc(var(--intro-step1-transition-delay-ms) * 1ms);
 }
 
-body[data-index] #header-banner {
+body[data-layout="index"] #header-banner {
 	background-color: white;
 }
 
@@ -430,11 +431,11 @@ body[data-before-intro] [data-layer~="loader"] {
 	display: block;
 }
 
-body[data-index][data-before-intro] #header {
+body[data-layout="index"][data-before-intro] #header {
 	transform: translateY(-100%);
 }
 
-body[data-index][data-before-intro] #nav {
+body[data-layout="index"][data-before-intro] #nav {
 	transform: translateX(-100%);
 }
 
@@ -503,7 +504,7 @@ body:not([data-on-intro]) #intro {
 }
 
 .project-item:not(:first-child) {
-	margin-top: var(--vertical-margin);
+	margin-top: var(--header-vertical-padding);
 }
 
 .project-details {
@@ -749,7 +750,6 @@ body:not([data-on-intro]) #intro {
 		content: none !important;
 	}
 
-	/* Show the loader over the intro animation. */
 	body[data-on-intro] [data-layer~="loader"] {
 		display: block;
 		z-index: 2;
