@@ -110,7 +110,6 @@ function stopLoader() {
 }
 
 function startIntro() {
-    document.body.toggleAttribute("data-before-intro", false);
     document.body.toggleAttribute("data-on-intro", true);
     intro.currentTime = 0;
     intro.play();
@@ -295,6 +294,7 @@ window.addEventListener("load", () => {
         Promise.all([documentImgsLoadPromises()]).then(() => {
             router.handleRouteChange(hash, void 0);
             setLang(searchParams.get("lang"));
+            document.body.toggleAttribute("data-before-intro", false);
             if (!isMobile()) {
                 stopLoader();
             }
